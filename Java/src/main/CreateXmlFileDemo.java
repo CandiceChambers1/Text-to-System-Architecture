@@ -294,13 +294,13 @@ public class CreateXmlFileDemo {
         generateDiagram(doc,content,generateXMI_ID("other"),xmiPackageID);
         generateFooter(doc,rootElement);
 
-        // write the content into xml file
+        // write the content into gen.sysml.xml file
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
         Transformer transformer = transformerFactory.newTransformer();
         transformer.setOutputProperty(OutputKeys.INDENT, "yes");
         DOMSource source = new DOMSource(doc);
         String name= filename;
-        StreamResult result = new StreamResult(new File("src/xml/" + name +".xml"));
+        StreamResult result = new StreamResult(new File("src/gen/sysml/xml/" + name +".xml"));
         transformer.transform(source, result);
 
 //         Output to console for testing

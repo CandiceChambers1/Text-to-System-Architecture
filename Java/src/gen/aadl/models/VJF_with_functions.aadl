@@ -1,0 +1,472 @@
+package VJF_with_functions
+public
+	
+system HANDVAC
+end HANDVAC;
+
+system implementation HANDVAC.impl
+	subcomponents
+ 		this_NOZZLE_ASSEMBLY: system NOZZLE_ASSEMBLY.impl;
+		this_FILTER_ASSEMBLY: system FILTER_ASSEMBLY.impl;
+		this_DRIVE_ASSEMBLY: system DRIVE_ASSEMBLY.impl;
+		this_ENVIRONMENT: system ENVIRONMENT.impl;
+		this_HANDVAC: system HANDVAC;
+	connections
+		HANDVAC0: port this_NOZZLE_ASSEMBLY.connection_to_CANISTER->this_FILTER_ASSEMBLY.connection_from_NOZZLE_BODY;
+		HANDVAC1: port this_ENVIRONMENT.Electricalenergy_to_CHARGING_UNIT->this_DRIVE_ASSEMBLY.Electricalenergy_from_ENVIRONMENT;
+		HANDVAC2: port this_ENVIRONMENT.debris_to_NOZZLE_BODY->this_NOZZLE_ASSEMBLY.debris_from_ENVIRONMENT;
+		HANDVAC3: port this_ENVIRONMENT.air_to_NOZZLE_BODY->this_NOZZLE_ASSEMBLY.air_from_ENVIRONMENT;
+		HANDVAC4: port this_NOZZLE_ASSEMBLY.air_to_FILTER_ASSEMBLY->this_FILTER_ASSEMBLY.air_from_NOZZLE_BODY;
+		HANDVAC5: port this_NOZZLE_ASSEMBLY.debris_to_FILTER_ASSEMBLY->this_FILTER_ASSEMBLY.debris_from_NOZZLE_BODY;
+		HANDVAC6: port this_FILTER_ASSEMBLY.Airflow_to_INTAKE_GRILL->this_DRIVE_ASSEMBLY.Airflow_from_FILTER_ASSEMBLY;
+		HANDVAC7: port this_DRIVE_ASSEMBLY.Airflow_to_ENVIRONMENT->this_ENVIRONMENT.Airflow_from_DISCHARGE_GRILL;
+end HANDVAC.impl;
+
+system NOZZLE_ASSEMBLY
+	features
+		debris_from_NOZZLE_BODY : in data port;
+		debris_to_FILTER_ASSEMBLY : out data port;
+		air_from_NOZZLE_BODY : in data port;
+		air_to_FILTER_ASSEMBLY : out data port;
+		air_from_ENVIRONMENT : in data port;
+		air_to_NOZZLE_BODY : out data port;
+		debris_from_ENVIRONMENT : in data port;
+		debris_to_NOZZLE_BODY : out data port;
+		connection_from_NOZZLE_BODY : in data port;
+		connection_to_CANISTER : out data port;
+end NOZZLE_ASSEMBLY;
+
+system implementation NOZZLE_ASSEMBLY.impl
+	subcomponents
+ 		this_NOZZLE_BODY: system NOZZLE_BODY.impl;
+		this_NOZZLE_EXTENDER: system NOZZLE_EXTENDER.impl;
+		this_VALVE_ASSEMBLY: system VALVE_ASSEMBLY.impl;
+		this_BRUSH_ASSEMBLY: system BRUSH_ASSEMBLY.impl;
+		this_NOZZLE_ASSEMBLY: system NOZZLE_ASSEMBLY;
+	connections
+		NOZZLE_ASSEMBLY0: port this_NOZZLE_EXTENDER.connection_to_NOZZLE_BODY->this_NOZZLE_BODY.connection_from_NOZZLE_EXTENDER;
+		NOZZLE_ASSEMBLY1: port this_VALVE_ASSEMBLY.connection_to_NOZZLE_BODY->this_NOZZLE_BODY.connection_from_VALVE_HOUSING;
+		NOZZLE_ASSEMBLY2: port this_BRUSH_ASSEMBLY.connection_to_NOZZLE_BODY->this_NOZZLE_BODY.connection_from_ROCKER;
+		NOZZLE_ASSEMBLY3: port this_NOZZLE_BODY.connection_to_CANISTER->this_NOZZLE_ASSEMBLY.connection_from_NOZZLE_BODY;
+		NOZZLE_ASSEMBLY4: port this_NOZZLE_ASSEMBLY.debris_to_NOZZLE_BODY->this_NOZZLE_BODY.debris_from_ENVIRONMENT;
+		NOZZLE_ASSEMBLY5: port this_NOZZLE_ASSEMBLY.air_to_NOZZLE_BODY->this_NOZZLE_BODY.air_from_ENVIRONMENT;
+		NOZZLE_ASSEMBLY6: port this_NOZZLE_BODY.air_to_FILTER_ASSEMBLY->this_NOZZLE_ASSEMBLY.air_from_NOZZLE_BODY;
+		NOZZLE_ASSEMBLY7: port this_NOZZLE_BODY.debris_to_FILTER_ASSEMBLY->this_NOZZLE_ASSEMBLY.debris_from_NOZZLE_BODY;
+end NOZZLE_ASSEMBLY.impl;
+
+system FILTER_ASSEMBLY
+	features
+		Airflow_to_INTAKE_GRILL : out data port;
+		debris_from_NOZZLE_BODY : in data port;
+		air_from_NOZZLE_BODY : in data port;
+		connection_from_NOZZLE_BODY : in data port;
+		connection_to_CANISTER : out data port;
+end FILTER_ASSEMBLY;
+
+system implementation FILTER_ASSEMBLY.impl
+	subcomponents
+ 		this_CANISTER: system CANISTER.impl;
+		this_GRILL_FILTER: system GRILL_FILTER.impl;
+		this_HEPA_ASSEMBLY: system HEPA_ASSEMBLY.impl;
+		this_FILTER_ASSEMBLY: system FILTER_ASSEMBLY;
+	connections
+		FILTER_ASSEMBLY0: port this_GRILL_FILTER.connection_to_FILTER_HOLDER->this_HEPA_ASSEMBLY.connection_from_GRILL_FILTER;
+		FILTER_ASSEMBLY1: port this_HEPA_ASSEMBLY.connection_to_CANISTER->this_CANISTER.connection_from_FILTER_HOLDER;
+		FILTER_ASSEMBLY2: port this_FILTER_ASSEMBLY.connection_to_CANISTER->this_CANISTER.connection_from_NOZZLE_BODY;
+end FILTER_ASSEMBLY.impl;
+
+system DRIVE_ASSEMBLY
+	features
+		Airflow_from_DISCHARGE_GRILL : in data port;
+		Airflow_to_ENVIRONMENT : out data port;
+		Airflow_from_FILTER_ASSEMBLY : in data port;
+		Airflow_to_INTAKE_GRILL : out data port;
+		Electricalenergy_from_ENVIRONMENT : in data port;
+		Electricalenergy_to_CHARGING_UNIT : out data port;
+end DRIVE_ASSEMBLY;
+
+system implementation DRIVE_ASSEMBLY.impl
+	subcomponents
+ 		this_DRIVE_HOUSING: system DRIVE_HOUSING.impl;
+		this_INTAKE_GRILL: system INTAKE_GRILL.impl;
+		this_HANDLE_ASSEMBLY: system HANDLE_ASSEMBLY.impl;
+		this_SUCTION_ASSEMBLY: system SUCTION_ASSEMBLY.impl;
+		this_DISCHARGE_ASSEMBLY: system DISCHARGE_ASSEMBLY.impl;
+		this_ELECTRICAL_ASSEMBLY: system ELECTRICAL_ASSEMBLY.impl;
+		this_DRIVE_ASSEMBLY: system DRIVE_ASSEMBLY;
+	connections
+		DRIVE_ASSEMBLY0: port this_INTAKE_GRILL.connection_to_DRIVE_HOUSING->this_DRIVE_HOUSING.connection_from_INTAKE_GRILL;
+		DRIVE_ASSEMBLY1: port this_SUCTION_ASSEMBLY.connection_to_DRIVE_HOUSING->this_DRIVE_HOUSING.connection_from_MOTOR;
+		DRIVE_ASSEMBLY2: port this_SUCTION_ASSEMBLY.connection_to_DRIVE_HOUSING1->this_DRIVE_HOUSING.connection_from_IMPELLER;
+		DRIVE_ASSEMBLY3: port this_DISCHARGE_ASSEMBLY.connection_to_DRIVE_HOUSING->this_DRIVE_HOUSING.connection_from_DISCHARGE_GRILL;
+		DRIVE_ASSEMBLY4: port this_ELECTRICAL_ASSEMBLY.connection_to_DRIVE_HOUSING->this_DRIVE_HOUSING.connection_from_BATTERY;
+		DRIVE_ASSEMBLY5: port this_DRIVE_ASSEMBLY.Electricalenergy_to_CHARGING_UNIT->this_ELECTRICAL_ASSEMBLY.Electricalenergy_from_ENVIRONMENT;
+		DRIVE_ASSEMBLY6: port this_ELECTRICAL_ASSEMBLY.Electricalenergy_to_MOTOR->this_SUCTION_ASSEMBLY.Electricalenergy_from_CONTROL_UNIT;
+		DRIVE_ASSEMBLY7: port this_DRIVE_ASSEMBLY.Airflow_to_INTAKE_GRILL->this_INTAKE_GRILL.Airflow_from_FILTER_ASSEMBLY;
+		DRIVE_ASSEMBLY8: port this_INTAKE_GRILL.air_to_IMPELLER->this_SUCTION_ASSEMBLY.air_from_INTAKE_GRILL;
+		DRIVE_ASSEMBLY9: port this_SUCTION_ASSEMBLY.Airflow_to_DISCHARGE_FILTER->this_DISCHARGE_ASSEMBLY.Airflow_from_IMPELLER;
+		DRIVE_ASSEMBLY10: port this_DISCHARGE_ASSEMBLY.Airflow_to_ENVIRONMENT->this_DRIVE_ASSEMBLY.Airflow_from_DISCHARGE_GRILL;
+end DRIVE_ASSEMBLY.impl;
+
+system ENVIRONMENT
+	features
+		Airflow_from_DISCHARGE_GRILL : in data port;
+		air_to_NOZZLE_BODY : out data port;
+		debris_to_NOZZLE_BODY : out data port;
+		Electricalenergy_to_CHARGING_UNIT : out data port;
+end ENVIRONMENT;
+
+system implementation ENVIRONMENT.impl
+end ENVIRONMENT.impl;
+
+system NOZZLE_BODY
+	features
+		debris_to_FILTER_ASSEMBLY : out data port;
+		air_to_FILTER_ASSEMBLY : out data port;
+		air_from_ENVIRONMENT : in data port;
+		debris_from_ENVIRONMENT : in data port;
+		connection_to_CANISTER : out data port;
+		connection_from_ROCKER : in data port;
+		connection_from_VALVE_HOUSING : in data port;
+		connection_from_NOZZLE_EXTENDER : in data port;
+end NOZZLE_BODY;
+
+system implementation NOZZLE_BODY.impl
+end NOZZLE_BODY.impl;
+
+system NOZZLE_EXTENDER
+	features
+		connection_to_NOZZLE_BODY : out data port;
+end NOZZLE_EXTENDER;
+
+system implementation NOZZLE_EXTENDER.impl
+end NOZZLE_EXTENDER.impl;
+
+system VALVE_ASSEMBLY
+	features
+		connection_from_VALVE_HOUSING : in data port;
+		connection_to_NOZZLE_BODY : out data port;
+end VALVE_ASSEMBLY;
+
+system implementation VALVE_ASSEMBLY.impl
+	subcomponents
+ 		this_VALVE_HOUSING: system VALVE_HOUSING.impl;
+		this_VALVE: system VALVE.impl;
+		this_VALVE_ASSEMBLY: system VALVE_ASSEMBLY;
+	connections
+		VALVE_ASSEMBLY0: port this_VALVE.connection_to_VALVE_HOUSING->this_VALVE_HOUSING.connection_from_VALVE;
+		VALVE_ASSEMBLY1: port this_VALVE_HOUSING.connection_to_NOZZLE_BODY->this_VALVE_ASSEMBLY.connection_from_VALVE_HOUSING;
+end VALVE_ASSEMBLY.impl;
+
+system BRUSH_ASSEMBLY
+	features
+		connection_from_ROCKER : in data port;
+		connection_to_NOZZLE_BODY : out data port;
+end BRUSH_ASSEMBLY;
+
+system implementation BRUSH_ASSEMBLY.impl
+	subcomponents
+ 		this_ROCKER: system ROCKER.impl;
+		this_BRISTLES: system BRISTLES.impl;
+		this_BRUSH_ASSEMBLY: system BRUSH_ASSEMBLY;
+	connections
+		BRUSH_ASSEMBLY0: port this_BRISTLES.connection_to_ROCKER->this_ROCKER.connection_from_BRISTLES;
+		BRUSH_ASSEMBLY1: port this_ROCKER.connection_to_NOZZLE_BODY->this_BRUSH_ASSEMBLY.connection_from_ROCKER;
+end BRUSH_ASSEMBLY.impl;
+
+system VALVE_HOUSING
+	features
+		connection_to_NOZZLE_BODY : out data port;
+		connection_from_VALVE : in data port;
+end VALVE_HOUSING;
+
+system implementation VALVE_HOUSING.impl
+end VALVE_HOUSING.impl;
+
+system VALVE
+	features
+		connection_to_VALVE_HOUSING : out data port;
+end VALVE;
+
+system implementation VALVE.impl
+end VALVE.impl;
+
+system ROCKER
+	features
+		connection_to_NOZZLE_BODY : out data port;
+		connection_from_BRISTLES : in data port;
+end ROCKER;
+
+system implementation ROCKER.impl
+end ROCKER.impl;
+
+system BRISTLES
+	features
+		connection_to_ROCKER : out data port;
+end BRISTLES;
+
+system implementation BRISTLES.impl
+end BRISTLES.impl;
+
+system CANISTER
+	features
+		connection_from_NOZZLE_BODY : in data port;
+		connection_from_FILTER_HOLDER : in data port;
+end CANISTER;
+
+system implementation CANISTER.impl
+end CANISTER.impl;
+
+system GRILL_FILTER
+	features
+		connection_to_FILTER_HOLDER : out data port;
+end GRILL_FILTER;
+
+system implementation GRILL_FILTER.impl
+end GRILL_FILTER.impl;
+
+system HEPA_ASSEMBLY
+	features
+		connection_from_FILTER_HOLDER : in data port;
+		connection_to_CANISTER : out data port;
+		connection_from_GRILL_FILTER : in data port;
+		connection_to_FILTER_HOLDER : out data port;
+end HEPA_ASSEMBLY;
+
+system implementation HEPA_ASSEMBLY.impl
+	subcomponents
+ 		this_FILTER_HOLDER: system FILTER_HOLDER.impl;
+		this_FILTER_INSERT: system FILTER_INSERT.impl;
+		this_HEPA_ASSEMBLY: system HEPA_ASSEMBLY;
+	connections
+		HEPA_ASSEMBLY0: port this_FILTER_INSERT.connection_to_FILTER_HOLDER->this_FILTER_HOLDER.connection_from_FILTER_INSERT;
+		HEPA_ASSEMBLY1: port this_HEPA_ASSEMBLY.connection_to_FILTER_HOLDER->this_FILTER_HOLDER.connection_from_GRILL_FILTER;
+		HEPA_ASSEMBLY2: port this_FILTER_HOLDER.connection_to_CANISTER->this_HEPA_ASSEMBLY.connection_from_FILTER_HOLDER;
+end HEPA_ASSEMBLY.impl;
+
+system FILTER_HOLDER
+	features
+		connection_to_CANISTER : out data port;
+		connection_from_GRILL_FILTER : in data port;
+		connection_from_FILTER_INSERT : in data port;
+end FILTER_HOLDER;
+
+system implementation FILTER_HOLDER.impl
+end FILTER_HOLDER.impl;
+
+system FILTER_INSERT
+	features
+		connection_to_FILTER_HOLDER : out data port;
+end FILTER_INSERT;
+
+system implementation FILTER_INSERT.impl
+end FILTER_INSERT.impl;
+
+system DRIVE_HOUSING
+	features
+		connection_from_BATTERY : in data port;
+		connection_from_DISCHARGE_GRILL : in data port;
+		connection_from_IMPELLER : in data port;
+		connection_from_MOTOR : in data port;
+		connection_from_INTAKE_GRILL : in data port;
+end DRIVE_HOUSING;
+
+system implementation DRIVE_HOUSING.impl
+end DRIVE_HOUSING.impl;
+
+system INTAKE_GRILL
+	features
+		air_to_IMPELLER : out data port;
+		Airflow_from_FILTER_ASSEMBLY : in data port;
+		connection_to_DRIVE_HOUSING : out data port;
+end INTAKE_GRILL;
+
+system implementation INTAKE_GRILL.impl
+end INTAKE_GRILL.impl;
+
+system HANDLE_ASSEMBLY
+end HANDLE_ASSEMBLY;
+
+system implementation HANDLE_ASSEMBLY.impl
+	subcomponents
+ 		this_HANDLE: system HANDLE.impl;
+		this_SWITCH: system SWITCH.impl;
+		this_HANDLE_ASSEMBLY: system HANDLE_ASSEMBLY;
+	connections
+		HANDLE_ASSEMBLY0: port this_SWITCH.connection_to_HANDLE->this_HANDLE.connection_from_SWITCH;
+end HANDLE_ASSEMBLY.impl;
+
+system SUCTION_ASSEMBLY
+	features
+		Airflow_from_IMPELLER : in data port;
+		Airflow_to_DISCHARGE_FILTER : out data port;
+		air_from_INTAKE_GRILL : in data port;
+		air_to_IMPELLER : out data port;
+		Electricalenergy_from_CONTROL_UNIT : in data port;
+		Electricalenergy_to_MOTOR : out data port;
+		connection_from_IMPELLER : in data port;
+		connection_to_DRIVE_HOUSING1 : out data port;
+		connection_from_MOTOR : in data port;
+		connection_to_DRIVE_HOUSING : out data port;
+end SUCTION_ASSEMBLY;
+
+system implementation SUCTION_ASSEMBLY.impl
+	subcomponents
+ 		this_MOTOR: system MOTOR.impl;
+		this_IMPELLER: system IMPELLER.impl;
+		this_SUCTION_ASSEMBLY: system SUCTION_ASSEMBLY;
+	connections
+		SUCTION_ASSEMBLY0: port this_IMPELLER.connection_to_MOTOR->this_MOTOR.connection_from_IMPELLER;
+		SUCTION_ASSEMBLY1: port this_MOTOR.connection_to_DRIVE_HOUSING->this_SUCTION_ASSEMBLY.connection_from_MOTOR;
+		SUCTION_ASSEMBLY2: port this_IMPELLER.connection_to_DRIVE_HOUSING->this_SUCTION_ASSEMBLY.connection_from_IMPELLER;
+		SUCTION_ASSEMBLY3: port this_SUCTION_ASSEMBLY.Electricalenergy_to_MOTOR->this_MOTOR.Electricalenergy_from_CONTROL_UNIT;
+		SUCTION_ASSEMBLY4: port this_MOTOR.Mechanicalenergy_to_IMPELLER->this_IMPELLER.Mechanicalenergy_from_MOTOR;
+		SUCTION_ASSEMBLY5: port this_SUCTION_ASSEMBLY.air_to_IMPELLER->this_IMPELLER.air_from_INTAKE_GRILL;
+		SUCTION_ASSEMBLY6: port this_MOTOR.Mechanicalenergy_to_IMPELLER1->this_IMPELLER.Mechanicalenergy_from_MOTOR1;
+		SUCTION_ASSEMBLY7: port this_IMPELLER.Airflow_to_DISCHARGE_FILTER->this_SUCTION_ASSEMBLY.Airflow_from_IMPELLER;
+end SUCTION_ASSEMBLY.impl;
+
+system DISCHARGE_ASSEMBLY
+	features
+		Airflow_from_DISCHARGE_GRILL : in data port;
+		Airflow_to_ENVIRONMENT : out data port;
+		Airflow_from_IMPELLER : in data port;
+		Airflow_to_DISCHARGE_FILTER : out data port;
+		connection_from_DISCHARGE_GRILL : in data port;
+		connection_to_DRIVE_HOUSING : out data port;
+end DISCHARGE_ASSEMBLY;
+
+system implementation DISCHARGE_ASSEMBLY.impl
+	subcomponents
+ 		this_DISCHARGE_FILTER: system DISCHARGE_FILTER.impl;
+		this_DISCHARGE_GRILL: system DISCHARGE_GRILL.impl;
+		this_DISCHARGE_ASSEMBLY: system DISCHARGE_ASSEMBLY;
+	connections
+		DISCHARGE_ASSEMBLY0: port this_DISCHARGE_FILTER.connection_to_DISCHARGE_GRILL->this_DISCHARGE_GRILL.connection_from_DISCHARGE_FILTER;
+		DISCHARGE_ASSEMBLY1: port this_DISCHARGE_GRILL.connection_to_DRIVE_HOUSING->this_DISCHARGE_ASSEMBLY.connection_from_DISCHARGE_GRILL;
+		DISCHARGE_ASSEMBLY2: port this_DISCHARGE_ASSEMBLY.Airflow_to_DISCHARGE_FILTER->this_DISCHARGE_FILTER.Airflow_from_IMPELLER;
+		DISCHARGE_ASSEMBLY3: port this_DISCHARGE_FILTER.Airflow_to_DISCHARGE_GRILL->this_DISCHARGE_GRILL.Airflow_from_DISCHARGE_FILTER;
+		DISCHARGE_ASSEMBLY4: port this_DISCHARGE_GRILL.Airflow_to_ENVIRONMENT->this_DISCHARGE_ASSEMBLY.Airflow_from_DISCHARGE_GRILL;
+end DISCHARGE_ASSEMBLY.impl;
+
+system ELECTRICAL_ASSEMBLY
+	features
+		Electricalenergy_from_CONTROL_UNIT : in data port;
+		Electricalenergy_to_MOTOR : out data port;
+		Electricalenergy_from_ENVIRONMENT : in data port;
+		Electricalenergy_to_CHARGING_UNIT : out data port;
+		connection_from_BATTERY : in data port;
+		connection_to_DRIVE_HOUSING : out data port;
+end ELECTRICAL_ASSEMBLY;
+
+system implementation ELECTRICAL_ASSEMBLY.impl
+	subcomponents
+ 		this_BATTERY: system BATTERY.impl;
+		this_CHARGING_UNIT: system CHARGING_UNIT.impl;
+		this_CONTROL_UNIT: system CONTROL_UNIT.impl;
+		this_ELECTRICAL_ASSEMBLY: system ELECTRICAL_ASSEMBLY;
+	connections
+		ELECTRICAL_ASSEMBLY0: port this_BATTERY.connection_to_DRIVE_HOUSING->this_ELECTRICAL_ASSEMBLY.connection_from_BATTERY;
+		ELECTRICAL_ASSEMBLY1: port this_CHARGING_UNIT.connection_to_BATTERY->this_BATTERY.connection_from_CHARGING_UNIT;
+		ELECTRICAL_ASSEMBLY2: port this_CONTROL_UNIT.connection_to_BATTERY->this_BATTERY.connection_from_CONTROL_UNIT;
+		ELECTRICAL_ASSEMBLY3: port this_ELECTRICAL_ASSEMBLY.Electricalenergy_to_CHARGING_UNIT->this_CHARGING_UNIT.Electricalenergy_from_ENVIRONMENT;
+		ELECTRICAL_ASSEMBLY4: port this_CHARGING_UNIT.Electricalenergy_to_BATTERY->this_BATTERY.Electricalenergy_from_CHARGING_UNIT;
+		ELECTRICAL_ASSEMBLY5: port this_BATTERY.Electricalenergy_to_CONTROL_UNIT->this_CONTROL_UNIT.Electricalenergy_from_BATTERY;
+		ELECTRICAL_ASSEMBLY6: port this_CONTROL_UNIT.Electricalenergy_to_MOTOR->this_ELECTRICAL_ASSEMBLY.Electricalenergy_from_CONTROL_UNIT;
+end ELECTRICAL_ASSEMBLY.impl;
+
+system HANDLE
+	features
+		connection_from_SWITCH : in data port;
+end HANDLE;
+
+system implementation HANDLE.impl
+end HANDLE.impl;
+
+system SWITCH
+	features
+		connection_to_HANDLE : out data port;
+end SWITCH;
+
+system implementation SWITCH.impl
+end SWITCH.impl;
+
+system MOTOR
+	features
+		Mechanicalenergy_to_IMPELLER1 : out data port;
+		Mechanicalenergy_to_IMPELLER : out data port;
+		Electricalenergy_from_CONTROL_UNIT : in data port;
+		connection_to_DRIVE_HOUSING : out data port;
+		connection_from_IMPELLER : in data port;
+end MOTOR;
+
+system implementation MOTOR.impl
+end MOTOR.impl;
+
+system IMPELLER
+	features
+		Airflow_to_DISCHARGE_FILTER : out data port;
+		Mechanicalenergy_from_MOTOR1 : in data port;
+		air_from_INTAKE_GRILL : in data port;
+		Mechanicalenergy_from_MOTOR : in data port;
+		connection_to_DRIVE_HOUSING : out data port;
+		connection_to_MOTOR : out data port;
+end IMPELLER;
+
+system implementation IMPELLER.impl
+end IMPELLER.impl;
+
+system DISCHARGE_FILTER
+	features
+		Airflow_to_DISCHARGE_GRILL : out data port;
+		Airflow_from_IMPELLER : in data port;
+		connection_to_DISCHARGE_GRILL : out data port;
+end DISCHARGE_FILTER;
+
+system implementation DISCHARGE_FILTER.impl
+end DISCHARGE_FILTER.impl;
+
+system DISCHARGE_GRILL
+	features
+		Airflow_to_ENVIRONMENT : out data port;
+		Airflow_from_DISCHARGE_FILTER : in data port;
+		connection_to_DRIVE_HOUSING : out data port;
+		connection_from_DISCHARGE_FILTER : in data port;
+end DISCHARGE_GRILL;
+
+system implementation DISCHARGE_GRILL.impl
+end DISCHARGE_GRILL.impl;
+
+system BATTERY
+	features
+		Electricalenergy_to_CONTROL_UNIT : out data port;
+		Electricalenergy_from_CHARGING_UNIT : in data port;
+		connection_from_CONTROL_UNIT : in data port;
+		connection_from_CHARGING_UNIT : in data port;
+		connection_to_DRIVE_HOUSING : out data port;
+end BATTERY;
+
+system implementation BATTERY.impl
+end BATTERY.impl;
+
+system CHARGING_UNIT
+	features
+		Electricalenergy_to_BATTERY : out data port;
+		Electricalenergy_from_ENVIRONMENT : in data port;
+		connection_to_BATTERY : out data port;
+end CHARGING_UNIT;
+
+system implementation CHARGING_UNIT.impl
+end CHARGING_UNIT.impl;
+
+system CONTROL_UNIT
+	features
+		Electricalenergy_to_MOTOR : out data port;
+		Electricalenergy_from_BATTERY : in data port;
+		connection_to_BATTERY : out data port;
+end CONTROL_UNIT;
+
+system implementation CONTROL_UNIT.impl
+end CONTROL_UNIT.impl;
+
+end VJF_with_functions;

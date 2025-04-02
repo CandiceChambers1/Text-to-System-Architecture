@@ -86,10 +86,5 @@ CORD connected to SWITCH port_components OUT_E1 and IN_E1.
 SWITCH connected to WIRING port_components OUT_E1 and OUT_E.
 BASKET_ASSEMBLY connected to BASKET port_components IN_M1 and IN_S1.
 BASKET_ASSEMBLY connected to BASKET port_components IN_M2 and IN_LIQ1.
-BASKET connected to VALVE port_components OUT_LIQ2 and IN_LIQ1.z
+BASKET connected to VALVE port_components OUT_LIQ2 and IN_LIQ1.
 VALVE connected to BASKET_ASSEMBLY port_components OUT_LIQ1 and OUT_M.
-PLUG imports Electrical energy from ENVIRONMENT to CORD.
-CORD transfers Electrical energy from PLUG to SWITCH.
-SWITCH actuates Electrical energy from CORD to WIRING.
-COIL converts Electrical energy to Thermal energy.
-

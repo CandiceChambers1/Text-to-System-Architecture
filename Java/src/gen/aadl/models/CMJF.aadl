@@ -1,0 +1,232 @@
+package CMJF
+public
+	
+system COFFEEMAKER
+end COFFEEMAKER;
+
+system implementation COFFEEMAKER.impl
+	subcomponents
+ 		this_COOKING_UNIT: system COOKING_UNIT.impl;
+		this_ENVIRONMENT: system ENVIRONMENT.impl;
+		this_POT: system POT.impl;
+		this_COFFEEMAKER: system COFFEEMAKER;
+	connections
+		COFFEEMAKER0: port this_POT.connection_to_COOKING_UNIT->this_COOKING_UNIT.connection_from_POT;
+		COFFEEMAKER1: port this_ENVIRONMENT.water_to_TANK->this_COOKING_UNIT.water_from_ENVIRONMENT;
+		COFFEEMAKER2: port this_ENVIRONMENT.Electricityenergy_to_HEATING_COIL->this_COOKING_UNIT.Electricityenergy_from_ENVIRONMENT;
+		COFFEEMAKER3: port this_ENVIRONMENT.Groundcoffee_to_FILTER->this_COOKING_UNIT.Groundcoffee_from_ENVIRONMENT;
+		COFFEEMAKER4: port this_COOKING_UNIT.Liquidcoffee_to_POT->this_POT.Liquidcoffee_from_FILTER;
+end COFFEEMAKER.impl;
+
+system COOKING_UNIT
+	features
+		Liquidcoffee_from_FILTER : in data port;
+		Liquidcoffee_to_POT : out data port;
+		Groundcoffee_from_ENVIRONMENT : in data port;
+		Groundcoffee_to_FILTER : out data port;
+		Electricityenergy_from_ENVIRONMENT : in data port;
+		Electricityenergy_to_HEATING_COIL : out data port;
+		water_from_ENVIRONMENT : in data port;
+		water_to_TANK : out data port;
+		connection_from_POT : in data port;
+end COOKING_UNIT;
+
+system implementation COOKING_UNIT.impl
+	subcomponents
+ 		this_TANK: system TANK.impl;
+		this_HEATING_UNIT: system HEATING_UNIT.impl;
+		this_BREWING_UNIT: system BREWING_UNIT.impl;
+		this_COOKING_UNIT: system COOKING_UNIT;
+	connections
+		COOKING_UNIT0: port this_TANK.connection_to_HEATING_UNIT->this_HEATING_UNIT.connection_from_TANK;
+		COOKING_UNIT1: port this_HEATING_UNIT.connection_to_BREWING_UNIT->this_BREWING_UNIT.connection_from_HEATING_UNIT;
+		COOKING_UNIT2: port this_COOKING_UNIT.water_to_TANK->this_TANK.water_from_ENVIRONMENT;
+		COOKING_UNIT3: port this_TANK.water_to_HEATING_UNIT->this_HEATING_UNIT.water_from_TANK;
+		COOKING_UNIT4: port this_COOKING_UNIT.Electricityenergy_to_HEATING_COIL->this_HEATING_UNIT.Electricityenergy_from_ENVIRONMENT;
+		COOKING_UNIT5: port this_HEATING_UNIT.Hotwater_to_VERTICAL_PIPE->this_BREWING_UNIT.Hotwater_from_HOT_WATER_PIPE;
+		COOKING_UNIT6: port this_COOKING_UNIT.Groundcoffee_to_FILTER->this_BREWING_UNIT.Groundcoffee_from_ENVIRONMENT;
+		COOKING_UNIT7: port this_BREWING_UNIT.Liquidcoffee_to_POT->this_COOKING_UNIT.Liquidcoffee_from_FILTER;
+end COOKING_UNIT.impl;
+
+system ENVIRONMENT
+	features
+		Groundcoffee_to_FILTER : out data port;
+		Electricityenergy_to_HEATING_COIL : out data port;
+		water_to_TANK : out data port;
+end ENVIRONMENT;
+
+system implementation ENVIRONMENT.impl
+end ENVIRONMENT.impl;
+
+system POT
+	features
+		Liquidcoffee_from_FILTER : in data port;
+		connection_to_COOKING_UNIT : out data port;
+end POT;
+
+system implementation POT.impl
+	subcomponents
+ 		this_GLASSWARE: system GLASSWARE.impl;
+		this_LID: system LID.impl;
+		this_HANDLE: system HANDLE.impl;
+		this_POT: system POT;
+	connections
+		POT0: port this_LID.connection_to_GLASSWARE->this_GLASSWARE.connection_from_LID;
+		POT1: port this_HANDLE.connection_to_GLASSWARE->this_GLASSWARE.connection_from_HANDLE;
+end POT.impl;
+
+system TANK
+	features
+		water_to_HEATING_UNIT : out data port;
+		water_from_ENVIRONMENT : in data port;
+		connection_to_HEATING_UNIT : out data port;
+end TANK;
+
+system implementation TANK.impl
+end TANK.impl;
+
+system HEATING_UNIT
+	features
+		Hotwater_from_HOT_WATER_PIPE : in data port;
+		Hotwater_to_VERTICAL_PIPE : out data port;
+		Electricityenergy_from_ENVIRONMENT : in data port;
+		Electricityenergy_to_HEATING_COIL : out data port;
+		water_from_TANK : in data port;
+		connection_to_BREWING_UNIT : out data port;
+		connection_from_TANK : in data port;
+end HEATING_UNIT;
+
+system implementation HEATING_UNIT.impl
+	subcomponents
+ 		this_HEATING_COIL: system HEATING_COIL.impl;
+		this_HOT_WATER_PIPE: system HOT_WATER_PIPE.impl;
+		this_HEATING_UNIT: system HEATING_UNIT;
+	connections
+		HEATING_UNIT0: port this_HEATING_COIL.connection_to_HOT_WATER_PIPE->this_HOT_WATER_PIPE.connection_from_HEATING_COIL;
+		HEATING_UNIT1: port this_HEATING_UNIT.Electricityenergy_to_HEATING_COIL->this_HEATING_COIL.Electricityenergy_from_ENVIRONMENT;
+		HEATING_UNIT2: port this_HEATING_COIL.Thermalenergy_to_HOT_WATER_PIPE->this_HOT_WATER_PIPE.Thermalenergy_from_HEATING_COIL;
+		HEATING_UNIT3: port this_HOT_WATER_PIPE.Hotwater_to_VERTICAL_PIPE->this_HEATING_UNIT.Hotwater_from_HOT_WATER_PIPE;
+end HEATING_UNIT.impl;
+
+system BREWING_UNIT
+	features
+		Liquidcoffee_from_FILTER : in data port;
+		Liquidcoffee_to_POT : out data port;
+		Groundcoffee_from_ENVIRONMENT : in data port;
+		Groundcoffee_to_FILTER : out data port;
+		Hotwater_from_HOT_WATER_PIPE : in data port;
+		Hotwater_to_VERTICAL_PIPE : out data port;
+		connection_from_HEATING_UNIT : in data port;
+end BREWING_UNIT;
+
+system implementation BREWING_UNIT.impl
+	subcomponents
+ 		this_VERTICAL_PIPE: system VERTICAL_PIPE.impl;
+		this_WATER_VALVE: system WATER_VALVE.impl;
+		this_SHOWER_HEAD: system SHOWER_HEAD.impl;
+		this_FILTER: system FILTER.impl;
+		this_FILTER_HOLDER: system FILTER_HOLDER.impl;
+		this_BREWING_UNIT: system BREWING_UNIT;
+	connections
+		BREWING_UNIT0: port this_WATER_VALVE.connection_to_VERTICAL_PIPE->this_VERTICAL_PIPE.connection_from_WATER_VALVE;
+		BREWING_UNIT1: port this_SHOWER_HEAD.connection_to_VERTICAL_PIPE->this_VERTICAL_PIPE.connection_from_SHOWER_HEAD;
+		BREWING_UNIT2: port this_BREWING_UNIT.Hotwater_to_VERTICAL_PIPE->this_VERTICAL_PIPE.Hotwater_from_HOT_WATER_PIPE;
+		BREWING_UNIT3: port this_VERTICAL_PIPE.Hotwater_to_SHOWER_HEAD->this_SHOWER_HEAD.Hotwater_from_VERTICAL_PIPE;
+		BREWING_UNIT4: port this_BREWING_UNIT.Groundcoffee_to_FILTER->this_FILTER.Groundcoffee_from_ENVIRONMENT;
+		BREWING_UNIT5: port this_SHOWER_HEAD.Hotwater_to_FILTER->this_FILTER.Hotwater_from_SHOWER_HEAD;
+		BREWING_UNIT6: port this_FILTER.Liquidcoffee_to_POT->this_BREWING_UNIT.Liquidcoffee_from_FILTER;
+end BREWING_UNIT.impl;
+
+system GLASSWARE
+	features
+		connection_from_HANDLE : in data port;
+		connection_from_LID : in data port;
+end GLASSWARE;
+
+system implementation GLASSWARE.impl
+end GLASSWARE.impl;
+
+system LID
+	features
+		connection_to_GLASSWARE : out data port;
+end LID;
+
+system implementation LID.impl
+end LID.impl;
+
+system HANDLE
+	features
+		connection_to_GLASSWARE : out data port;
+end HANDLE;
+
+system implementation HANDLE.impl
+end HANDLE.impl;
+
+system HEATING_COIL
+	features
+		Thermalenergy_to_HOT_WATER_PIPE : out data port;
+		Electricityenergy_from_ENVIRONMENT : in data port;
+		connection_to_HOT_WATER_PIPE : out data port;
+end HEATING_COIL;
+
+system implementation HEATING_COIL.impl
+end HEATING_COIL.impl;
+
+system HOT_WATER_PIPE
+	features
+		Hotwater_to_VERTICAL_PIPE : out data port;
+		Thermalenergy_from_HEATING_COIL : in data port;
+		connection_from_HEATING_COIL : in data port;
+end HOT_WATER_PIPE;
+
+system implementation HOT_WATER_PIPE.impl
+end HOT_WATER_PIPE.impl;
+
+system VERTICAL_PIPE
+	features
+		Hotwater_to_SHOWER_HEAD : out data port;
+		Hotwater_from_HOT_WATER_PIPE : in data port;
+		connection_from_SHOWER_HEAD : in data port;
+		connection_from_WATER_VALVE : in data port;
+end VERTICAL_PIPE;
+
+system implementation VERTICAL_PIPE.impl
+end VERTICAL_PIPE.impl;
+
+system WATER_VALVE
+	features
+		connection_to_VERTICAL_PIPE : out data port;
+end WATER_VALVE;
+
+system implementation WATER_VALVE.impl
+end WATER_VALVE.impl;
+
+system SHOWER_HEAD
+	features
+		Hotwater_to_FILTER : out data port;
+		Hotwater_from_VERTICAL_PIPE : in data port;
+		connection_to_VERTICAL_PIPE : out data port;
+end SHOWER_HEAD;
+
+system implementation SHOWER_HEAD.impl
+end SHOWER_HEAD.impl;
+
+system FILTER
+	features
+		Liquidcoffee_to_POT : out data port;
+		Hotwater_from_SHOWER_HEAD : in data port;
+		Groundcoffee_from_ENVIRONMENT : in data port;
+end FILTER;
+
+system implementation FILTER.impl
+end FILTER.impl;
+
+system FILTER_HOLDER
+end FILTER_HOLDER;
+
+system implementation FILTER_HOLDER.impl
+end FILTER_HOLDER.impl;
+	
+	
+	
+end CMJF;
