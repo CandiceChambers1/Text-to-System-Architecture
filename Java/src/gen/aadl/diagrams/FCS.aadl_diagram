@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="ASCII"?>
+<diagram:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:diagram="http://osate.org/diagram" formatVersion="7">
+  <element uuid="76e7c722-752b-42e3-935d-66d519722fe6" manual="true">
+    <element uuid="4b8960c5-bba8-4951-8764-58e686383a38" manual="true">
+      <element uuid="cc1a50d2-f091-40cc-9901-7b8ac124fef1" manual="true">
+        <element uuid="c7b45e6b-1ad4-44a4-8446-e3db8d819f90" manual="true">
+          <element uuid="792341c3-74cd-4f46-b05a-ef13497bb5b6" manual="true">
+            <bo>
+              <seg>tag</seg>
+              <seg>unidirectional</seg>
+            </bo>
+          </element>
+          <bo>
+            <seg>connection</seg>
+            <seg>FCS0</seg>
+          </bo>
+          <bendpoints>
+            <point x="1392.4818115234375" y="-1107.0"/>
+            <point x="1392.4818115234375" y="-1135.0"/>
+          </bendpoints>
+        </element>
+        <element uuid="0cb49364-0d65-44be-aa7a-ea05abce1bce" manual="true">
+          <element uuid="1d3e6e79-d6c5-4514-a6c0-48b0b5c44b68" manual="true">
+            <bo>
+              <seg>tag</seg>
+              <seg>unidirectional</seg>
+            </bo>
+          </element>
+          <bo>
+            <seg>connection</seg>
+            <seg>FCS1</seg>
+          </bo>
+        </element>
+        <element uuid="584f9086-6659-40d4-9724-6f7d3a3bd5a6" manual="true">
+          <element uuid="e4f724ee-971d-4d2b-87a1-235cb09e751d" manual="true">
+            <bo>
+              <seg>tag</seg>
+              <seg>unidirectional</seg>
+            </bo>
+          </element>
+          <bo>
+            <seg>connection</seg>
+            <seg>FCS2</seg>
+          </bo>
+          <bendpoints>
+            <point x="688.9322509765625" y="-1185.0"/>
+            <point x="688.9322509765625" y="-1079.0"/>
+          </bendpoints>
+        </element>
+        <element uuid="84c3a4a7-f467-4902-b731-fa817bfaad9c" manual="true">
+          <element uuid="add1aac4-8f57-4216-a82e-63aa16153471" manual="true">
+            <bo>
+              <seg>tag</seg>
+              <seg>unidirectional</seg>
+            </bo>
+          </element>
+          <bo>
+            <seg>connection</seg>
+            <seg>FCS3</seg>
+          </bo>
+          <bendpoints>
+            <point x="698.9322509765625" y="-1029.0"/>
+            <point x="698.9322509765625" y="-1115.3333740234375"/>
+          </bendpoints>
+        </element>
+        <element uuid="88cb972d-5365-4a84-a055-098b187f7925" manual="true">
+          <element uuid="d517ceff-9878-4395-9c1a-b6c2b95d5c8a" manual="true">
+            <bo>
+              <seg>tag</seg>
+              <seg>unidirectional</seg>
+            </bo>
+          </element>
+          <bo>
+            <seg>connection</seg>
+            <seg>FCS4</seg>
+          </bo>
+          <bendpoints>
+            <point x="678.9322509765625" y="-1129.0"/>
+            <point x="678.9322509765625" y="-1238.0"/>
+            <point x="1621.8348388671875" y="-1238.0"/>
+            <point x="1621.8348388671875" y="-1057.0"/>
+          </bendpoints>
+        </element>
+        <element uuid="4a55f445-0ad2-44fb-a080-3df57a07f405" manual="true">
+          <element uuid="753dbab5-ea7f-4b0c-ab6a-9687650d57b5" manual="true">
+            <bo>
+              <seg>tag</seg>
+              <seg>unidirectional</seg>
+            </bo>
+          </element>
+          <bo>
+            <seg>connection</seg>
+            <seg>FCS5</seg>
+          </bo>
+        </element>
+        <element uuid="2c972e34-508e-4d9e-acc9-59363d12a291" manual="true">
+          <element uuid="7a053ac0-339f-4b7f-9680-a565f1e062dc" manual="true">
+            <bo>
+              <seg>tag</seg>
+              <seg>unidirectional</seg>
+            </bo>
+          </element>
+          <bo>
+            <seg>connection</seg>
+            <seg>FCS6</seg>
+          </bo>
+        </element>
+        <element uuid="548a3534-fa46-4cbd-beee-b525e37e58c2" manual="true">
+          <element uuid="8eb900b6-7274-4eeb-8d6d-9c4679533660" manual="true">
+            <bo>
+              <seg>tag</seg>
+              <seg>unidirectional</seg>
+            </bo>
+          </element>
+          <bo>
+            <seg>connection</seg>
+            <seg>FCS7</seg>
+          </bo>
+          <bendpoints>
+            <point x="1392.4818115234375" y="-1007.0"/>
+            <point x="1392.4818115234375" y="-979.0"/>
+          </bendpoints>
+        </element>
+        <element uuid="05a605ed-c6d9-472e-bc79-33effc36ddad" manual="true" dockArea="right">
+          <bo>
+            <seg>feature</seg>
+            <seg>PRIMARY_SIDE</seg>
+          </bo>
+          <position x="1478.7161483764648" y="265.0"/>
+        </element>
+        <element uuid="53042914-107d-4180-b0f5-92ab3764272d" manual="true" dockArea="right">
+          <bo>
+            <seg>feature</seg>
+            <seg>TRANSFER_SWITCH</seg>
+          </bo>
+          <position x="1446.14453125" y="187.0"/>
+        </element>
+        <element uuid="739d1491-031a-45d6-87d6-a0c6124b89a0" manual="true">
+          <element uuid="b90dfe2e-87f2-4e25-954f-ae959a5ee06b" manual="true" dockArea="left">
+            <bo>
+              <seg>feature</seg>
+              <seg>BUS_IN</seg>
+            </bo>
+            <position y="26.666666666666668"/>
+          </element>
+          <element uuid="ccadae3f-bc6e-44b6-860b-538203579de3" manual="true" dockArea="left">
+            <bo>
+              <seg>feature</seg>
+              <seg>CLK</seg>
+            </bo>
+            <position y="93.33333333333334"/>
+          </element>
+          <element uuid="889afd22-e9ed-4623-9b8d-e6350c69304e" manual="true" dockArea="right">
+            <bo>
+              <seg>feature</seg>
+              <seg>PILOT_FLYING</seg>
+            </bo>
+            <position x="338.09505462646484" y="10.0"/>
+          </element>
+          <element uuid="3f2e07f3-747b-4c6c-bd28-9fd75a9bb6d4" manual="true" dockArea="right">
+            <bo>
+              <seg>feature</seg>
+              <seg>PRIMARY_SIDE</seg>
+            </bo>
+            <position x="332.9127655029297" y="110.0"/>
+          </element>
+          <element uuid="23451b27-d682-4cd7-8507-d99cde01b605" manual="true" dockArea="right">
+            <bo>
+              <seg>feature</seg>
+              <seg>TRANSFER_SWITCH</seg>
+            </bo>
+            <position x="300.34114837646484" y="60.0"/>
+          </element>
+          <bo>
+            <seg>subcomponent</seg>
+            <seg>this_LEFT_SIDE</seg>
+          </bo>
+          <position x="749.140625" y="127.0"/>
+          <size width="444.19661712646484" height="160.0"/>
+        </element>
+        <element uuid="ca556ba9-4f66-43ff-898d-d35e27fc0d1d" manual="true">
+          <element uuid="73fe2ce7-d732-4c01-9106-b7e8f57f1400" manual="true" dockArea="left">
+            <bo>
+              <seg>feature</seg>
+              <seg>CLK</seg>
+            </bo>
+            <position y="110.0"/>
+          </element>
+          <element uuid="729a62b7-d8c9-45ae-814f-071b9f740861" manual="true" dockArea="left">
+            <bo>
+              <seg>feature</seg>
+              <seg>LEFT</seg>
+            </bo>
+            <position y="60.0"/>
+          </element>
+          <element uuid="2a4525f1-1b38-404b-a1a5-e4ef2a1651d4" manual="true" dockArea="left">
+            <bo>
+              <seg>feature</seg>
+              <seg>RIGHT</seg>
+            </bo>
+            <position y="10.0"/>
+          </element>
+          <bo>
+            <seg>subcomponent</seg>
+            <seg>this_LR</seg>
+          </bo>
+          <position x="1213.3372802734375" y="49.0"/>
+          <size width="209.3528594970703" height="160.0"/>
+        </element>
+        <element uuid="67e79a56-67fa-4bfe-9b73-d54d5ff83226" manual="true">
+          <element uuid="f859cd06-38e7-4e15-a2ea-9c69aa6b6c23" manual="true" dockArea="right">
+            <bo>
+              <seg>feature</seg>
+              <seg>BUS_IN</seg>
+            </bo>
+            <position x="392.9127616882324" y="60.0"/>
+          </element>
+          <element uuid="f069703e-323d-4512-8417-33a698bdcf62" manual="true" dockArea="left">
+            <bo>
+              <seg>feature</seg>
+              <seg>CLK</seg>
+            </bo>
+            <position y="85.0"/>
+          </element>
+          <element uuid="f020affd-e245-4ee1-a524-2c095e2f93a1" manual="true" dockArea="right">
+            <bo>
+              <seg>feature</seg>
+              <seg>PILOT_FLYING</seg>
+            </bo>
+            <position x="346.97525787353516" y="110.0"/>
+          </element>
+          <element uuid="70ab842b-a824-45f9-9472-94e44b95de03" manual="true" dockArea="right">
+            <bo>
+              <seg>feature</seg>
+              <seg>PRIMARY_SIDE</seg>
+            </bo>
+            <position x="341.79296875" y="160.0"/>
+          </element>
+          <element uuid="75c243e8-c30e-4b68-9dd6-5f08d5abaad9" manual="true" dockArea="right">
+            <bo>
+              <seg>feature</seg>
+              <seg>TRANSFER_SWITCH</seg>
+            </bo>
+            <position x="309.22135162353516" y="10.0"/>
+          </element>
+          <bo>
+            <seg>subcomponent</seg>
+            <seg>this_RIGHT_SIDE</seg>
+          </bo>
+          <position x="26.7109375" y="105.0"/>
+          <size width="453.07682037353516" height="210.0"/>
+        </element>
+        <element uuid="0c9eb597-30c2-4d5a-b53f-156aca8302cd" manual="true">
+          <element uuid="9ad1f88d-675f-49c8-886e-e3f5ee0a40ea" manual="true" dockArea="left">
+            <bo>
+              <seg>feature</seg>
+              <seg>CLK</seg>
+            </bo>
+            <position y="60.0"/>
+          </element>
+          <element uuid="e5d5a61d-3051-4d9d-bcd9-9fb936f4ee55" manual="true" dockArea="right">
+            <bo>
+              <seg>feature</seg>
+              <seg>LEFT</seg>
+            </bo>
+            <position x="164.7552032470703" y="35.0"/>
+          </element>
+          <element uuid="c7cc2309-7ffc-4a07-9987-8b5b3cdf3655" manual="true" dockArea="left">
+            <bo>
+              <seg>feature</seg>
+              <seg>RIGHT</seg>
+            </bo>
+            <position y="10.0"/>
+          </element>
+          <bo>
+            <seg>subcomponent</seg>
+            <seg>this_RL</seg>
+          </bo>
+          <position x="519.7877502441406" y="118.66666666666667"/>
+          <size width="209.3528594970703" height="110.0"/>
+        </element>
+        <bo>
+          <seg>subcomponent</seg>
+          <seg>this_FCS</seg>
+        </bo>
+        <position x="20.0" y="38.0"/>
+        <size width="1590.0" height="327.0"/>
+      </element>
+      <bo>
+        <seg>classifier</seg>
+        <seg>FCS_SYSTEM.impl</seg>
+      </bo>
+      <position x="170.0" y="26.0"/>
+      <size width="1650.0" height="377.0"/>
+    </element>
+    <bo>
+      <seg>package</seg>
+      <seg>FCS</seg>
+    </bo>
+    <position y="-1340.0"/>
+    <size width="2238.433755874634" height="1242.6666666666667"/>
+  </element>
+  <config type="custom" connectionPrimaryLabelsVisible="false">
+    <enabledAadlProperties/>
+    <context>
+      <seg>package</seg>
+      <seg>FCS</seg>
+    </context>
+  </config>
+</diagram:Diagram>
