@@ -55,11 +55,11 @@ public class CreateAADL {
 //                                    break;
                                 } else if (s1.structNoun.equals(s.structNoun) && s1.structNouns.contains(s.connectionNoun)) {
 //                                    System.out.println("Second "+ s.structNoun + "\t" + s1.structNoun + "\t" + s.connectionNoun + "\t" + src + "\t" + dest);
-//                                    components.createConnection(s1.structNoun, s.structNoun, s.connectionNoun, src, dest);
+                                    components.createConnection(s1.structNoun, s.structNoun, s.connectionNoun, src, dest);
 //                                    break;
                                 } else if (s1.structNouns.contains(s.structNoun) && s1.structNoun.equals(s.connectionNoun)) {
 //                                    System.out.println("Third: "+s.structNoun + "\t" + s1.structNoun + "\t" + s.connectionNoun);
-//                                    components.createConnection(s1.structNoun, s.structNoun, s.connectionNoun, src, dest);
+                                    components.createConnection(s1.structNoun, s.structNoun, s.connectionNoun, src, dest);
 //                                    break;
                                 } else {
 //                                    System.out.println("Never");
