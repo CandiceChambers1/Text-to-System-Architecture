@@ -181,7 +181,6 @@ public class CreateAADL {
               output.append("\t\t").append(ownerName).append(count).append(": port this_").append(con.srcBlockName).append(".").append(con.srcPortName).append("-> this_").append(con.destBlockName).append(".").append(con.destPortName).append(";\n");
               count++;
           }else if (ownerFirstName.equals(name)) {
-              System.out.println("Hi mama");
               output.append("\t\t").append(ownerFirstName).append(count).append(": port this_").append(con.srcBlockName).append(".").append(con.srcPortName).append("-> this_").append(con.destBlockName).append(".").append(con.destPortName).append(";\n");
               count++;
 //              System.out.println("Owner Name: " + ownerName + " Source Block: " + con.srcBlockName);
