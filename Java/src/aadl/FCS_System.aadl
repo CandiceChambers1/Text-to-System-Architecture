@@ -16,12 +16,6 @@ system implementation FCS_SYSTEM.impl
 --        FCS_SYSTEM3: port this_FCS.PRIMARY_SIDE->this_FCS.this_LEFT_SIDE.PRIMARY_SIDE;
 end FCS_SYSTEM.impl;
 
-system FCS
-    features
-		PRIMARY_SIDE : in out data port;
-		TRANSFER_SWITCH : in out data port;
-end FCS;
-
 system implementation FCS.impl
     subcomponents
         this_LEFT_SIDE: system FGS.impl;
@@ -34,6 +28,12 @@ system implementation FCS.impl
         FCS2: port this_LR.RIGHT->this_RIGHT_SIDE.BUS_IN;
         FCS3: port this_RIGHT_SIDE.PILOT_FLYING->this_RL.RIGHT;
 end FCS.impl;
+
+system FCS
+    features
+		PRIMARY_SIDE : in out data port;
+		TRANSFER_SWITCH : in out data port;
+end FCS;
 
 system FGS
     features

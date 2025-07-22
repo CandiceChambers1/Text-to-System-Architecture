@@ -23,7 +23,7 @@ public class Main {
             String filename = inputFileName.split("/")[3].split(".txt")[0];
             String inputFile = readInputFile(inputFileName);
             String input = cleanText(inputFile);
-//            System.out.println(input);
+
             ANTLRInputStream inputStream = new ANTLRInputStream(input);
             SysmlLexer sysmlLexer = new SysmlLexer((inputStream));
             CommonTokenStream tokenStream = new CommonTokenStream(sysmlLexer);
@@ -31,8 +31,16 @@ public class Main {
             Visitor visitor = new Visitor();
             visitor.sentences = new Sentences();
             visitor.visit(sysmlParser.nlparch());
-            CreateXmlFileDemo outputFormatter= new CreateXmlFileDemo(visitor.sentences , true);
-            outputFormatter.generateOutput(filename);
+
+//          Create SysML Model
+            CreateSysML outputSysML_Formatter= new CreateSysML(visitor.sentences , true);
+
+//          Create AADL Model
+            CreateAADL outputAADL_Formatter = new CreateAADL(visitor.sentences, true);
+
+            outputSysML_Formatter.generateOutput(filename);
+            outputAADL_Formatter.generateOutput(filename);
+
         } catch (Exception e) {
             e.printStackTrace();
         }

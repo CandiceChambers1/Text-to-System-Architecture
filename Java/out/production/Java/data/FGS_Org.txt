@@ -1,9 +1,0 @@
-The FGS System consists of four components: the Left Side FGS, the Right Side FGS, an LR Bus, and an RL Bus.
-LR Bus establishes connection between Left Side FGS and Right Side FGS.
-The LR Bus takes input from CLK2.
-RL Bus establishes connection between Left Side FGS and Right Side FGS.
-The RL Bus takes input from CLK4.
-The Left Side FGS accepts as input a boolean value of Left Transfer Switch and Left Primary Side.
-The Left Side FGS takes input from a synchronous clock CLK1.
-The Right Side FGS accepts as input a boolean value of Right Transfer Switch and Right Primary Side.
-The Right Side FGS accepts input from a synchronous clock CLK3.
