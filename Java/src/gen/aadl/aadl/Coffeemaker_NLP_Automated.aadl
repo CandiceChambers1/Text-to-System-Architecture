@@ -1,0 +1,389 @@
+package ELECTRIC_COFFEE_MAKER_AADL
+public
+
+system ELECTRIC_COFFEE_MAKER
+end ELECTRIC_COFFEE_MAKER;
+
+system implementation ELECTRIC_COFFEE_MAKER.impl
+	subcomponents
+		this_STORAGE_TANK: system STORAGE_TANK.impl;
+		this_HANDLE: system HANDLE.impl;
+		this_HOT_PLATE: system HOT_PLATE.impl;
+		this_INSULATION: system INSULATION.impl;
+		this_SWITCH: system SWITCH.impl;
+		this_GLASSWARE: system GLASSWARE.impl;
+		this_FILTER: system FILTER.impl;
+		this_VALVE: system VALVE.impl;
+		this_BASKET: system BASKET.impl;
+		this_BASKET_ASSEMBLY: system BASKET_ASSEMBLY.impl;
+		this_ELEVATOR_PIPE: system ELEVATOR_PIPE.impl;
+		this_HEATING_PIPE: system HEATING_PIPE.impl;
+		this_SHOWER_HEAD: system SHOWER_HEAD.impl;
+		this_CASING: system CASING.impl;
+		this_COIL: system COIL.impl;
+		this_HEATER: system HEATER.impl;
+		this_CORD: system CORD.impl;
+		this_PLUG: system PLUG.impl;
+		this_WIRING: system WIRING.impl;
+		this_BREWING_UNIT: system BREWING_UNIT.impl;
+		this_HYDRAULIC_UNIT: system HYDRAULIC_UNIT.impl;
+		this_HEATING_UNIT: system HEATING_UNIT.impl;
+		this_STORAGE_UNIT: system STORAGE_UNIT.impl;
+		this_COOKING_UNIT: system COOKING_UNIT.impl;
+		this_COFFEEMAKER: system COFFEEMAKER.impl;
+	connections
+		ELECTRIC_COFFEE_MAKER0: port this_COFFEEMAKER.IN_M1-> this_COOKING_UNIT.IN_M1;
+		ELECTRIC_COFFEE_MAKER1: port this_COFFEEMAKER.IN_M2-> this_COOKING_UNIT.IN_M2;
+		ELECTRIC_COFFEE_MAKER2: port this_COFFEEMAKER.IN_E-> this_COOKING_UNIT.IN_E;
+		ELECTRIC_COFFEE_MAKER3: port this_COOKING_UNIT.OUT_M2-> this_STORAGE_UNIT.IN_M;
+		ELECTRIC_COFFEE_MAKER4: port this_STORAGE_UNIT.OUT_M-> this_COFFEEMAKER.OUT_M2;
+		ELECTRIC_COFFEE_MAKER5: port this_COOKING_UNIT.OUT_M1-> this_COFFEEMAKER.OUT_M1;
+		ELECTRIC_COFFEE_MAKER6: port this_COOKING_UNIT.IN_E-> this_HEATING_UNIT.IN_E;
+		ELECTRIC_COFFEE_MAKER7: port this_COOKING_UNIT.IN_M1-> this_HEATING_UNIT.IN_M1;
+		ELECTRIC_COFFEE_MAKER8: port this_COOKING_UNIT.IN_M2-> this_HEATING_UNIT.IN_M2;
+		ELECTRIC_COFFEE_MAKER9: port this_HEATING_UNIT.OUT_E-> this_HYDRAULIC_UNIT.IN_E;
+		ELECTRIC_COFFEE_MAKER10: port this_HEATING_UNIT.OUT_M1-> this_BREWING_UNIT.IN_M1;
+		ELECTRIC_COFFEE_MAKER11: port this_HEATING_UNIT.OUT_M2-> this_BREWING_UNIT.IN_M2;
+		ELECTRIC_COFFEE_MAKER12: port this_BREWING_UNIT.OUT_M2-> this_COOKING_UNIT.OUT_M2;
+		ELECTRIC_COFFEE_MAKER13: port this_BREWING_UNIT.OUT_M1-> this_HYDRAULIC_UNIT.IN_M;
+		ELECTRIC_COFFEE_MAKER14: port this_HYDRAULIC_UNIT.OUT_M-> this_COOKING_UNIT.OUT_M1;
+		ELECTRIC_COFFEE_MAKER15: port this_STORAGE_UNIT.IN_M-> this_GLASSWARE.IN_LIQ1;
+		ELECTRIC_COFFEE_MAKER16: port this_GLASSWARE.OUT_LIQ1-> this_STORAGE_UNIT.OUT_M;
+		ELECTRIC_COFFEE_MAKER17: port this_STORAGE_UNIT.IN_M-> this_HANDLE.IN_LIQ1;
+		ELECTRIC_COFFEE_MAKER18: port this_HANDLE.OUT_LIQ1-> this_STORAGE_UNIT.OUT_M;
+		ELECTRIC_COFFEE_MAKER19: port this_HEATING_UNIT.IN_E-> this_WIRING.IN_E;
+		ELECTRIC_COFFEE_MAKER20: port this_HEATING_UNIT.IN_M2-> this_HEATER.IN_M;
+		ELECTRIC_COFFEE_MAKER21: port this_WIRING.OUT_E-> this_HEATER.IN_E;
+		ELECTRIC_COFFEE_MAKER22: port this_HEATING_UNIT.IN_M1-> this_HOT_PLATE.IN_LIQ1;
+		ELECTRIC_COFFEE_MAKER23: port this_HEATER.OUT_E-> this_HOT_PLATE.IN_E1;
+		ELECTRIC_COFFEE_MAKER24: port this_HEATER.OUT_M-> this_HEATING_UNIT.OUT_M2;
+		ELECTRIC_COFFEE_MAKER25: port this_HEATER.OUT_E-> this_HEATING_UNIT.OUT_E;
+		ELECTRIC_COFFEE_MAKER26: port this_HOT_PLATE.OUT_LIQ2-> this_HEATING_UNIT.OUT_M1;
+		ELECTRIC_COFFEE_MAKER27: port this_HYDRAULIC_UNIT.IN_M-> this_STORAGE_TANK.IN_LIQ1;
+		ELECTRIC_COFFEE_MAKER28: port this_HYDRAULIC_UNIT.IN_E-> this_HEATING_PIPE.IN_E1;
+		ELECTRIC_COFFEE_MAKER29: port this_STORAGE_TANK.OUT_LIQ1-> this_HEATING_PIPE.IN_LIQ1;
+		ELECTRIC_COFFEE_MAKER30: port this_HEATING_PIPE.OUT_E1-> this_INSULATION.IN_E1;
+		ELECTRIC_COFFEE_MAKER31: port this_HEATING_PIPE.OUT_LIQ2-> this_ELEVATOR_PIPE.IN_LIQ1;
+		ELECTRIC_COFFEE_MAKER32: port this_ELEVATOR_PIPE.OUT_LIQ1-> this_SHOWER_HEAD.IN_LIQ1;
+		ELECTRIC_COFFEE_MAKER33: port this_SHOWER_HEAD.OUT_LIQ1-> this_HYDRAULIC_UNIT.OUT_M;
+		ELECTRIC_COFFEE_MAKER34: port this_BREWING_UNIT.IN_M1-> this_BASKET_ASSEMBLY.IN_M1;
+		ELECTRIC_COFFEE_MAKER35: port this_BREWING_UNIT.IN_M2-> this_BASKET_ASSEMBLY.IN_M2;
+		ELECTRIC_COFFEE_MAKER36: port this_BREWING_UNIT.IN_M1-> this_FILTER.IN_S1;
+		ELECTRIC_COFFEE_MAKER37: port this_BREWING_UNIT.IN_M2-> this_FILTER.IN_LIQ1;
+		ELECTRIC_COFFEE_MAKER38: port this_BASKET_ASSEMBLY.OUT_M-> this_BREWING_UNIT.OUT_M1;
+		ELECTRIC_COFFEE_MAKER39: port this_FILTER.OUT_S2-> this_BREWING_UNIT.OUT_M2;
+		ELECTRIC_COFFEE_MAKER40: port this_FILTER.OUT_LIQ2-> this_BREWING_UNIT.OUT_M1;
+		ELECTRIC_COFFEE_MAKER41: port this_HEATER.IN_E-> this_COIL.IN_E1;
+		ELECTRIC_COFFEE_MAKER42: port this_HEATER.IN_M-> this_CASING.IN_LIQ1;
+		ELECTRIC_COFFEE_MAKER43: port this_COIL.OUT_E1-> this_CASING.IN_E1;
+		ELECTRIC_COFFEE_MAKER44: port this_COIL.OUT_E1-> this_HEATER.OUT_E;
+		ELECTRIC_COFFEE_MAKER45: port this_CASING.OUT_E1-> this_INSULATION.IN_E1;
+		ELECTRIC_COFFEE_MAKER46: port this_CASING.OUT_LIQ2-> this_HEATER.OUT_M;
+		ELECTRIC_COFFEE_MAKER47: port this_WIRING.IN_E-> this_PLUG.IN_E1;
+		ELECTRIC_COFFEE_MAKER48: port this_PLUG.OUT_E1-> this_CORD.IN_E1;
+		ELECTRIC_COFFEE_MAKER49: port this_CORD.OUT_E1-> this_SWITCH.IN_E1;
+		ELECTRIC_COFFEE_MAKER50: port this_SWITCH.OUT_E1-> this_WIRING.OUT_E;
+		ELECTRIC_COFFEE_MAKER51: port this_BASKET_ASSEMBLY.IN_M1-> this_BASKET.IN_S1;
+		ELECTRIC_COFFEE_MAKER52: port this_BASKET_ASSEMBLY.IN_M2-> this_BASKET.IN_LIQ1;
+		ELECTRIC_COFFEE_MAKER53: port this_BASKET.OUT_LIQ2-> this_VALVE.IN_LIQ1;
+		ELECTRIC_COFFEE_MAKER54: port this_VALVE.OUT_LIQ1-> this_BASKET_ASSEMBLY.OUT_M;
+end ELECTRIC_COFFEE_MAKER.impl;
+
+system implementation COFFEEMAKER.impl
+	subcomponents
+		this_COOKING_UNIT: system COOKING_UNIT.impl;
+		this_STORAGE_UNIT: system STORAGE_UNIT.impl;
+	connections
+		COFFEEMAKER0: port this_COFFEEMAKER.IN_M1-> this_COOKING_UNIT.IN_M1;
+		COFFEEMAKER1: port this_COFFEEMAKER.IN_M2-> this_COOKING_UNIT.IN_M2;
+		COFFEEMAKER2: port this_COFFEEMAKER.IN_E-> this_COOKING_UNIT.IN_E;
+		COFFEEMAKER3: port this_COOKING_UNIT.OUT_M2-> this_STORAGE_UNIT.IN_M;
+		COFFEEMAKER4: port this_STORAGE_UNIT.OUT_M-> this_COFFEEMAKER.OUT_M2;
+		COFFEEMAKER5: port this_COOKING_UNIT.OUT_M1-> this_COFFEEMAKER.OUT_M1;
+end COFFEEMAKER.impl;
+
+system implementation COOKING_UNIT.impl
+	subcomponents
+		this_HEATING_UNIT: system HEATING_UNIT.impl;
+		this_BREWING_UNIT: system BREWING_UNIT.impl;
+		this_HYDRAULIC_UNIT: system HYDRAULIC_UNIT.impl;
+	connections
+		COOKING_UNIT0: port this_COOKING_UNIT.IN_E-> this_HEATING_UNIT.IN_E;
+		COOKING_UNIT1: port this_COOKING_UNIT.IN_M1-> this_HEATING_UNIT.IN_M1;
+		COOKING_UNIT2: port this_COOKING_UNIT.IN_M2-> this_HEATING_UNIT.IN_M2;
+		COOKING_UNIT3: port this_HEATING_UNIT.OUT_E-> this_HYDRAULIC_UNIT.IN_E;
+		COOKING_UNIT4: port this_HEATING_UNIT.OUT_M1-> this_BREWING_UNIT.IN_M1;
+		COOKING_UNIT5: port this_HEATING_UNIT.OUT_M2-> this_BREWING_UNIT.IN_M2;
+		COOKING_UNIT6: port this_BREWING_UNIT.OUT_M2-> this_COOKING_UNIT.OUT_M2;
+		COOKING_UNIT7: port this_BREWING_UNIT.OUT_M1-> this_HYDRAULIC_UNIT.IN_M;
+		COOKING_UNIT8: port this_HYDRAULIC_UNIT.OUT_M-> this_COOKING_UNIT.OUT_M1;
+end COOKING_UNIT.impl;
+
+system implementation STORAGE_UNIT.impl
+	subcomponents
+		this_GLASSWARE: system GLASSWARE.impl;
+		this_HANDLE: system HANDLE.impl;
+	connections
+		STORAGE_UNIT0: port this_STORAGE_UNIT.IN_M-> this_GLASSWARE.IN_LIQ1;
+		STORAGE_UNIT1: port this_GLASSWARE.OUT_LIQ1-> this_STORAGE_UNIT.OUT_M;
+		STORAGE_UNIT2: port this_STORAGE_UNIT.IN_M-> this_HANDLE.IN_LIQ1;
+		STORAGE_UNIT3: port this_HANDLE.OUT_LIQ1-> this_STORAGE_UNIT.OUT_M;
+end STORAGE_UNIT.impl;
+
+system implementation HEATING_UNIT.impl
+	subcomponents
+		this_HEATER: system HEATER.impl;
+		this_HOT_PLATE: system HOT_PLATE.impl;
+		this_WIRING: system WIRING.impl;
+	connections
+		HEATING_UNIT0: port this_HEATING_UNIT.IN_E-> this_WIRING.IN_E;
+		HEATING_UNIT1: port this_HEATING_UNIT.IN_M2-> this_HEATER.IN_M;
+		HEATING_UNIT2: port this_WIRING.OUT_E-> this_HEATER.IN_E;
+		HEATING_UNIT3: port this_HEATING_UNIT.IN_M1-> this_HOT_PLATE.IN_LIQ1;
+		HEATING_UNIT4: port this_HEATER.OUT_E-> this_HOT_PLATE.IN_E1;
+		HEATING_UNIT5: port this_HEATER.OUT_M-> this_HEATING_UNIT.OUT_M2;
+		HEATING_UNIT6: port this_HEATER.OUT_E-> this_HEATING_UNIT.OUT_E;
+		HEATING_UNIT7: port this_HOT_PLATE.OUT_LIQ2-> this_HEATING_UNIT.OUT_M1;
+end HEATING_UNIT.impl;
+
+system implementation WIRING.impl
+	subcomponents
+		this_CORD: system CORD.impl;
+		this_SWITCH: system SWITCH.impl;
+		this_PLUG: system PLUG.impl;
+	connections
+		WIRING0: port this_WIRING.IN_E-> this_PLUG.IN_E1;
+		WIRING1: port this_PLUG.OUT_E1-> this_CORD.IN_E1;
+		WIRING2: port this_CORD.OUT_E1-> this_SWITCH.IN_E1;
+		WIRING3: port this_SWITCH.OUT_E1-> this_WIRING.OUT_E;
+end WIRING.impl;
+
+system implementation HEATER.impl
+	subcomponents
+		this_CASING: system CASING.impl;
+		this_INSULATION: system INSULATION.impl;
+		this_COIL: system COIL.impl;
+	connections
+		HEATER0: port this_HEATER.IN_E-> this_COIL.IN_E1;
+		HEATER1: port this_HEATER.IN_M-> this_CASING.IN_LIQ1;
+		HEATER2: port this_COIL.OUT_E1-> this_CASING.IN_E1;
+		HEATER3: port this_COIL.OUT_E1-> this_HEATER.OUT_E;
+		HEATER4: port this_CASING.OUT_E1-> this_INSULATION.IN_E1;
+		HEATER5: port this_CASING.OUT_LIQ2-> this_HEATER.OUT_M;
+end HEATER.impl;
+
+system implementation HYDRAULIC_UNIT.impl
+	subcomponents
+		this_ELEVATOR_PIPE: system ELEVATOR_PIPE.impl;
+		this_SHOWER_HEAD: system SHOWER_HEAD.impl;
+		this_INSULATION: system INSULATION.impl;
+		this_HEATING_PIPE: system HEATING_PIPE.impl;
+		this_STORAGE_TANK: system STORAGE_TANK.impl;
+	connections
+		HYDRAULIC_UNIT0: port this_HYDRAULIC_UNIT.IN_M-> this_STORAGE_TANK.IN_LIQ1;
+		HYDRAULIC_UNIT1: port this_HYDRAULIC_UNIT.IN_E-> this_HEATING_PIPE.IN_E1;
+		HYDRAULIC_UNIT2: port this_STORAGE_TANK.OUT_LIQ1-> this_HEATING_PIPE.IN_LIQ1;
+		HYDRAULIC_UNIT3: port this_HEATING_PIPE.OUT_E1-> this_INSULATION.IN_E1;
+		HYDRAULIC_UNIT4: port this_HEATING_PIPE.OUT_LIQ2-> this_ELEVATOR_PIPE.IN_LIQ1;
+		HYDRAULIC_UNIT5: port this_ELEVATOR_PIPE.OUT_LIQ1-> this_SHOWER_HEAD.IN_LIQ1;
+		HYDRAULIC_UNIT6: port this_SHOWER_HEAD.OUT_LIQ1-> this_HYDRAULIC_UNIT.OUT_M;
+end HYDRAULIC_UNIT.impl;
+
+system implementation BREWING_UNIT.impl
+	subcomponents
+		this_BASKET_ASSEMBLY: system BASKET_ASSEMBLY.impl;
+		this_FILTER: system FILTER.impl;
+	connections
+		BREWING_UNIT0: port this_BREWING_UNIT.IN_M1-> this_BASKET_ASSEMBLY.IN_M1;
+		BREWING_UNIT1: port this_BREWING_UNIT.IN_M2-> this_BASKET_ASSEMBLY.IN_M2;
+		BREWING_UNIT2: port this_BREWING_UNIT.IN_M1-> this_FILTER.IN_S1;
+		BREWING_UNIT3: port this_BREWING_UNIT.IN_M2-> this_FILTER.IN_LIQ1;
+		BREWING_UNIT4: port this_BASKET_ASSEMBLY.OUT_M-> this_BREWING_UNIT.OUT_M1;
+		BREWING_UNIT5: port this_FILTER.OUT_S2-> this_BREWING_UNIT.OUT_M2;
+		BREWING_UNIT6: port this_FILTER.OUT_LIQ2-> this_BREWING_UNIT.OUT_M1;
+end BREWING_UNIT.impl;
+
+system implementation BASKET_ASSEMBLY.impl
+	subcomponents
+		this_BASKET: system BASKET.impl;
+		this_VALVE: system VALVE.impl;
+	connections
+		BASKET_ASSEMBLY0: port this_BASKET_ASSEMBLY.IN_M1-> this_BASKET.IN_S1;
+		BASKET_ASSEMBLY1: port this_BASKET_ASSEMBLY.IN_M2-> this_BASKET.IN_LIQ1;
+		BASKET_ASSEMBLY2: port this_BASKET.OUT_LIQ2-> this_VALVE.IN_LIQ1;
+		BASKET_ASSEMBLY3: port this_VALVE.OUT_LIQ1-> this_BASKET_ASSEMBLY.OUT_M;
+end BASKET_ASSEMBLY.impl;
+
+system COFFEEMAKER
+	features
+		OUT_M1 : in out data port;
+		OUT_M2 : in out data port;
+		IN_E : in out data port;
+		IN_M2 : in out data port;
+		IN_M1 : in out data port;
+end COFFEEMAKER;
+
+system COOKING_UNIT
+	features
+		OUT_M1 : in out data port;
+		OUT_M2 : in out data port;
+		IN_E : in out data port;
+		IN_M2 : in out data port;
+		IN_M1 : in out data port;
+end COOKING_UNIT;
+
+system STORAGE_UNIT
+	features
+		IN_M : in out data port;
+		OUT_M : in out data port;
+end STORAGE_UNIT;
+
+system GLASSWARE
+	features
+		IN_LIQ1 : in out data port;
+		OUT_LIQ1 : in out data port;
+end GLASSWARE;
+
+system HANDLE
+	features
+		IN_LIQ1 : in out data port;
+		OUT_LIQ1 : in out data port;
+end HANDLE;
+
+system HEATING_UNIT
+	features
+		OUT_M1 : in out data port;
+		OUT_M2 : in out data port;
+		OUT_E : in out data port;
+		IN_M2 : in out data port;
+		IN_M1 : in out data port;
+		IN_E : in out data port;
+end HEATING_UNIT;
+
+system WIRING
+	features
+		IN_E : in out data port;
+		OUT_E : in out data port;
+end WIRING;
+
+system PLUG
+	features
+		IN_E1 : in out data port;
+		OUT_E1 : in out data port;
+end PLUG;
+
+system CORD
+	features
+		IN_E1 : in out data port;
+		OUT_E1 : in out data port;
+end CORD;
+
+system SWITCH
+	features
+		IN_E1 : in out data port;
+		OUT_E1 : in out data port;
+end SWITCH;
+
+system HEATER
+	features
+		OUT_E : in out data port;
+		OUT_M : in out data port;
+		IN_M : in out data port;
+		IN_E : in out data port;
+end HEATER;
+
+system COIL
+	features
+		IN_E1 : in out data port;
+		OUT_E1 : in out data port;
+end COIL;
+
+system CASING
+	features
+		OUT_E1 : in out data port;
+		OUT_LIQ2 : in out data port;
+		IN_LIQ1 : in out data port;
+		IN_E1 : in out data port;
+end CASING;
+
+system INSULATION
+	features
+		IN_E1 : in out data port;
+end INSULATION;
+
+system HOT_PLATE
+	features
+		IN_LIQ1 : in out data port;
+		OUT_LIQ2 : in out data port;
+		IN_E1 : in out data port;
+end HOT_PLATE;
+
+system HYDRAULIC_UNIT
+	features
+		IN_E : in out data port;
+		OUT_M : in out data port;
+		IN_M : in out data port;
+end HYDRAULIC_UNIT;
+
+system HEATING_PIPE
+	features
+		OUT_E1 : in out data port;
+		OUT_LIQ2 : in out data port;
+		IN_LIQ1 : in out data port;
+		IN_E1 : in out data port;
+end HEATING_PIPE;
+
+system SHOWER_HEAD
+	features
+		IN_LIQ1 : in out data port;
+		OUT_LIQ1 : in out data port;
+end SHOWER_HEAD;
+
+system ELEVATOR_PIPE
+	features
+		IN_LIQ1 : in out data port;
+		OUT_LIQ1 : in out data port;
+end ELEVATOR_PIPE;
+
+system STORAGE_TANK
+	features
+		IN_LIQ1 : in out data port;
+		OUT_LIQ1 : in out data port;
+end STORAGE_TANK;
+
+system BREWING_UNIT
+	features
+		OUT_M1 : in out data port;
+		OUT_M2 : in out data port;
+		IN_M2 : in out data port;
+		IN_M1 : in out data port;
+end BREWING_UNIT;
+
+system BASKET_ASSEMBLY
+	features
+		IN_M2 : in out data port;
+		OUT_M : in out data port;
+		IN_M1 : in out data port;
+end BASKET_ASSEMBLY;
+
+system VALVE
+	features
+		IN_LIQ1 : in out data port;
+		OUT_LIQ1 : in out data port;
+end VALVE;
+
+system BASKET
+	features
+		IN_LIQ1 : in out data port;
+		OUT_LIQ2 : in out data port;
+		IN_S1 : in out data port;
+end BASKET;
+
+system FILTER
+	features
+		OUT_S2 : in out data port;
+		OUT_LIQ2 : in out data port;
+		IN_LIQ1 : in out data port;
+		IN_S1 : in out data port;
+end FILTER;
+

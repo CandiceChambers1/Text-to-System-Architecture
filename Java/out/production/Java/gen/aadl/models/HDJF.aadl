@@ -1,0 +1,300 @@
+package HDJF
+public
+	
+system HAIRDRYER
+end HAIRDRYER;
+
+system implementation HAIRDRYER.impl
+	subcomponents
+ 		this_USER_INTERFACE: system USER_INTERFACE.impl;
+		this_POWER_UNIT: system POWER_UNIT.impl;
+		this_PROPULSION_UNIT: system PROPULSION_UNIT.impl;
+		this_HEATING_UNIT: system HEATING_UNIT.impl;
+		this_ENVIRONMENT: system ENVIRONMENT.impl;
+		this_HAIRDRYER: system HAIRDRYER;
+	connections
+		HAIRDRYER0: port this_ENVIRONMENT.Electricalenergy_to_MAINS_CORD->this_POWER_UNIT.Electricalenergy_from_ENVIRONMENT;
+		HAIRDRYER1: port this_POWER_UNIT.Electricalenergy_to_HEATER_CORE->this_HEATING_UNIT.Electricalenergy_from_JUNCTION_BOX;
+		HAIRDRYER2: port this_USER_INTERFACE.air_to_FAN->this_PROPULSION_UNIT.air_from_INTAKE_GRILL;
+		HAIRDRYER3: port this_PROPULSION_UNIT.Flowingair_to_HEATING_UNIT->this_HEATING_UNIT.Flowingair_from_FAN;
+		HAIRDRYER4: port this_HEATING_UNIT.HotFlowingair_to_DISCHARGE_OPENING->this_USER_INTERFACE.HotFlowingair_from_CONDUIT;
+		HAIRDRYER5: port this_USER_INTERFACE.HotFlowingair_to_ENVIRONMENT->this_ENVIRONMENT.HotFlowingair_from_DISCHARGE_OPENING;
+		HAIRDRYER6: port this_USER_INTERFACE.connection_to_POWER_SWITCH->this_POWER_UNIT.connection_from_POWER_BUTTON;
+end HAIRDRYER.impl;
+
+system USER_INTERFACE
+	features
+		connection_from_POWER_BUTTON : in data port;
+		connection_to_POWER_SWITCH : out data port;
+		HotFlowingair_from_DISCHARGE_OPENING : in data port;
+		HotFlowingair_to_ENVIRONMENT : out data port;
+		HotFlowingair_from_CONDUIT : in data port;
+		HotFlowingair_to_DISCHARGE_OPENING : out data port;
+		air_from_INTAKE_GRILL : in data port;
+		air_to_FAN : out data port;
+end USER_INTERFACE;
+
+system implementation USER_INTERFACE.impl
+	subcomponents
+ 		this_HANDLE: system HANDLE.impl;
+		this_BODY: system BODY.impl;
+		this_USER_INTERFACE: system USER_INTERFACE;
+	connections
+		USER_INTERFACE0: port this_BODY.air_to_FAN->this_USER_INTERFACE.air_from_INTAKE_GRILL;
+		USER_INTERFACE1: port this_USER_INTERFACE.HotFlowingair_to_DISCHARGE_OPENING->this_BODY.HotFlowingair_from_CONDUIT;
+		USER_INTERFACE2: port this_BODY.HotFlowingair_to_ENVIRONMENT->this_USER_INTERFACE.HotFlowingair_from_DISCHARGE_OPENING;
+		USER_INTERFACE3: port this_HANDLE.connection_to_POWER_SWITCH->this_USER_INTERFACE.connection_from_POWER_BUTTON;
+end USER_INTERFACE.impl;
+
+system POWER_UNIT
+	features
+		connection_from_POWER_BUTTON : in data port;
+		connection_to_POWER_SWITCH : out data port;
+		Electricalenergy_from_JUNCTION_BOX : in data port;
+		Electricalenergy_to_HEATER_CORE : out data port;
+		Electricalenergy_from_ENVIRONMENT : in data port;
+		Electricalenergy_to_MAINS_CORD : out data port;
+end POWER_UNIT;
+
+system implementation POWER_UNIT.impl
+	subcomponents
+ 		this_MAINS_CORD: system MAINS_CORD.impl;
+		this_POWER_SWITCH: system POWER_SWITCH.impl;
+		this_JUNCTION_BOX: system JUNCTION_BOX.impl;
+		this_HEATING_WIRES: system HEATING_WIRES.impl;
+		this_MOTOR_WIRES: system MOTOR_WIRES.impl;
+		this_POWER_UNIT: system POWER_UNIT;
+	connections
+		POWER_UNIT0: port this_POWER_UNIT.Electricalenergy_to_MAINS_CORD->this_MAINS_CORD.Electricalenergy_from_ENVIRONMENT;
+		POWER_UNIT1: port this_MAINS_CORD.Electricalenergy_to_POWER_SWITCH->this_POWER_SWITCH.Electricalenergy_from_MAINS_CORD;
+		POWER_UNIT2: port this_POWER_SWITCH.Electricalenergy_to_JUNCTION_BOX->this_JUNCTION_BOX.Electricalenergy_from_POWER_SWITCH;
+		POWER_UNIT3: port this_JUNCTION_BOX.Electricalenergy_to_HEATER_CORE->this_POWER_UNIT.Electricalenergy_from_JUNCTION_BOX;
+		POWER_UNIT4: port this_JUNCTION_BOX.Electricalenergy_to_MOTOR_WIRES->this_MOTOR_WIRES.Electricalenergy_from_JUNCTION_BOX;
+		POWER_UNIT5: port this_POWER_UNIT.connection_to_POWER_SWITCH->this_POWER_SWITCH.connection_from_POWER_BUTTON;
+end POWER_UNIT.impl;
+
+system PROPULSION_UNIT
+	features
+		Flowingair_from_FAN : in data port;
+		Flowingair_to_HEATING_UNIT : out data port;
+		air_from_INTAKE_GRILL : in data port;
+		air_to_FAN : out data port;
+end PROPULSION_UNIT;
+
+system implementation PROPULSION_UNIT.impl
+	subcomponents
+ 		this_MOTOR: system MOTOR.impl;
+		this_FAN: system FAN.impl;
+		this_PROPULSION_UNIT: system PROPULSION_UNIT;
+	connections
+		PROPULSION_UNIT0: port this_FAN.connection_to_MOTOR->this_MOTOR.connection_from_FAN;
+		PROPULSION_UNIT1: port this_PROPULSION_UNIT.air_to_FAN->this_FAN.air_from_INTAKE_GRILL;
+		PROPULSION_UNIT2: port this_MOTOR.Mechanicalenergy_to_FAN->this_FAN.Mechanicalenergy_from_MOTOR;
+		PROPULSION_UNIT3: port this_FAN.Flowingair_to_HEATING_UNIT->this_PROPULSION_UNIT.Flowingair_from_FAN;
+end PROPULSION_UNIT.impl;
+
+system HEATING_UNIT
+	features
+		HotFlowingair_from_CONDUIT : in data port;
+		HotFlowingair_to_DISCHARGE_OPENING : out data port;
+		Flowingair_from_FAN : in data port;
+		Electricalenergy_from_JUNCTION_BOX : in data port;
+		Electricalenergy_to_HEATER_CORE : out data port;
+end HEATING_UNIT;
+
+system implementation HEATING_UNIT.impl
+	subcomponents
+ 		this_HEATER_CORE: system HEATER_CORE.impl;
+		this_INSULATING_SLEEVE: system INSULATING_SLEEVE.impl;
+		this_NOZZLE: system NOZZLE.impl;
+		this_HEATING_UNIT: system HEATING_UNIT;
+	connections
+		HEATING_UNIT0: port this_HEATING_UNIT.Electricalenergy_to_HEATER_CORE->this_HEATER_CORE.Electricalenergy_from_JUNCTION_BOX;
+		HEATING_UNIT1: port this_NOZZLE.HotFlowingair_to_DISCHARGE_OPENING->this_HEATING_UNIT.HotFlowingair_from_CONDUIT;
+end HEATING_UNIT.impl;
+
+system ENVIRONMENT
+	features
+		HotFlowingair_from_DISCHARGE_OPENING : in data port;
+		Electricalenergy_to_MAINS_CORD : out data port;
+end ENVIRONMENT;
+
+system implementation ENVIRONMENT.impl
+end ENVIRONMENT.impl;
+
+system HANDLE
+	features
+		connection_from_POWER_BUTTON : in data port;
+		connection_to_POWER_SWITCH : out data port;
+end HANDLE;
+
+system implementation HANDLE.impl
+	subcomponents
+ 		this_HAND_GRIP: system HAND_GRIP.impl;
+		this_POWER_BUTTON: system POWER_BUTTON.impl;
+		this_HANDLE: system HANDLE;
+	connections
+		HANDLE0: port this_POWER_BUTTON.connection_to_POWER_SWITCH->this_HANDLE.connection_from_POWER_BUTTON;
+end HANDLE.impl;
+
+system BODY
+	features
+		HotFlowingair_from_DISCHARGE_OPENING : in data port;
+		HotFlowingair_to_ENVIRONMENT : out data port;
+		HotFlowingair_from_CONDUIT : in data port;
+		HotFlowingair_to_DISCHARGE_OPENING : out data port;
+		air_from_INTAKE_GRILL : in data port;
+		air_to_FAN : out data port;
+end BODY;
+
+system implementation BODY.impl
+	subcomponents
+ 		this_BARREL: system BARREL.impl;
+		this_INTAKE_GRILL: system INTAKE_GRILL.impl;
+		this_DISCHARGE_OPENING: system DISCHARGE_OPENING.impl;
+		this_BODY: system BODY;
+	connections
+		BODY0: port this_INTAKE_GRILL.air_to_FAN->this_BODY.air_from_INTAKE_GRILL;
+		BODY1: port this_BODY.HotFlowingair_to_DISCHARGE_OPENING->this_DISCHARGE_OPENING.HotFlowingair_from_CONDUIT;
+		BODY2: port this_DISCHARGE_OPENING.HotFlowingair_to_ENVIRONMENT->this_BODY.HotFlowingair_from_DISCHARGE_OPENING;
+end BODY.impl;
+
+system HEATER_CORE
+	features
+		Electricalenergy_from_JUNCTION_BOX : in data port;
+end HEATER_CORE;
+
+system implementation HEATER_CORE.impl
+end HEATER_CORE.impl;
+
+system INSULATING_SLEEVE
+end INSULATING_SLEEVE;
+
+system implementation INSULATING_SLEEVE.impl
+end INSULATING_SLEEVE.impl;
+
+system NOZZLE
+	features
+		HotFlowingair_from_CONDUIT : in data port;
+		HotFlowingair_to_DISCHARGE_OPENING : out data port;
+end NOZZLE;
+
+system implementation NOZZLE.impl
+	subcomponents
+ 		this_CONDUIT: system CONDUIT.impl;
+		this_HEATER_CORE: system HEATER_CORE.impl;
+		this_NOZZLE: system NOZZLE;
+	connections
+		NOZZLE0: port this_CONDUIT.HotFlowingair_to_DISCHARGE_OPENING->this_NOZZLE.HotFlowingair_from_CONDUIT;
+end NOZZLE.impl;
+
+system MAINS_CORD
+	features
+		Electricalenergy_to_POWER_SWITCH : out data port;
+		Electricalenergy_from_ENVIRONMENT : in data port;
+end MAINS_CORD;
+
+system implementation MAINS_CORD.impl
+end MAINS_CORD.impl;
+
+system POWER_SWITCH
+	features
+		connection_from_POWER_BUTTON : in data port;
+		Electricalenergy_to_JUNCTION_BOX : out data port;
+		Electricalenergy_from_MAINS_CORD : in data port;
+end POWER_SWITCH;
+
+system implementation POWER_SWITCH.impl
+end POWER_SWITCH.impl;
+
+system JUNCTION_BOX
+	features
+		Electricalenergy_to_MOTOR_WIRES : out data port;
+		Electricalenergy_to_HEATER_CORE : out data port;
+		Electricalenergy_from_POWER_SWITCH : in data port;
+end JUNCTION_BOX;
+
+system implementation JUNCTION_BOX.impl
+end JUNCTION_BOX.impl;
+
+system HEATING_WIRES
+end HEATING_WIRES;
+
+system implementation HEATING_WIRES.impl
+end HEATING_WIRES.impl;
+
+system MOTOR_WIRES
+	features
+		Electricalenergy_from_JUNCTION_BOX : in data port;
+end MOTOR_WIRES;
+
+system implementation MOTOR_WIRES.impl
+end MOTOR_WIRES.impl;
+
+system BARREL
+end BARREL;
+
+system implementation BARREL.impl
+end BARREL.impl;
+
+system INTAKE_GRILL
+	features
+		air_to_FAN : out data port;
+end INTAKE_GRILL;
+
+system implementation INTAKE_GRILL.impl
+end INTAKE_GRILL.impl;
+
+system DISCHARGE_OPENING
+	features
+		HotFlowingair_to_ENVIRONMENT : out data port;
+		HotFlowingair_from_CONDUIT : in data port;
+end DISCHARGE_OPENING;
+
+system implementation DISCHARGE_OPENING.impl
+end DISCHARGE_OPENING.impl;
+
+system CONDUIT
+	features
+		HotFlowingair_to_DISCHARGE_OPENING : out data port;
+end CONDUIT;
+
+system implementation CONDUIT.impl
+end CONDUIT.impl;
+
+system MOTOR
+	features
+		Mechanicalenergy_to_FAN : out data port;
+		connection_from_FAN : in data port;
+end MOTOR;
+
+system implementation MOTOR.impl
+end MOTOR.impl;
+
+system FAN
+	features
+		Flowingair_to_HEATING_UNIT : out data port;
+		Mechanicalenergy_from_MOTOR : in data port;
+		air_from_INTAKE_GRILL : in data port;
+		connection_to_MOTOR : out data port;
+end FAN;
+
+system implementation FAN.impl
+end FAN.impl;
+
+system HAND_GRIP
+end HAND_GRIP;
+
+system implementation HAND_GRIP.impl
+end HAND_GRIP.impl;
+
+system POWER_BUTTON
+	features
+		connection_to_POWER_SWITCH : out data port;
+end POWER_BUTTON;
+
+system implementation POWER_BUTTON.impl
+end POWER_BUTTON.impl;
+
+	
+end HDJF;

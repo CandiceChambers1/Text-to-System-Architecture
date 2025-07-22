@@ -1,0 +1,123 @@
+package FJF
+public
+	
+	
+system FGS_SYSTEM
+end FGS_SYSTEM;
+
+system implementation FGS_SYSTEM.impl
+	subcomponents
+ 		this_L_FGS: system L_FGS.impl;
+		this_R_FGS: system R_FGS.impl;
+		this_LR_BUS: system LR_BUS.impl;
+		this_RL_BUS: system RL_BUS.impl;
+		this_CLK_ONE: system CLK_ONE.impl;
+		this_CLK_TWO: system CLK_TWO.impl;
+		this_CLK_THREE: system CLK_THREE.impl;
+		this_CLK_FOUR: system CLK_FOUR.impl;
+		this_ENVIRONMENT: system ENVIRONMENT.impl;
+		this_FGS_SYSTEM: system FGS_SYSTEM;
+	connections
+		FGS_SYSTEM0: port this_L_FGS.Left_Pilot_Flying_Side_to_LR_BUS->this_LR_BUS.Left_Pilot_Flying_Side_from_L_FGS;
+		FGS_SYSTEM1: port this_LR_BUS.Left_Pilot_Flying_to_R_FGS->this_R_FGS.Left_Pilot_Flying_from_LR_BUS;
+		FGS_SYSTEM2: port this_R_FGS.Left_Pilot_Flying_Side_to_RL_BUS->this_RL_BUS.Left_Pilot_Flying_Side_from_R_FGS;
+		FGS_SYSTEM3: port this_RL_BUS.Left_Pilot_Flying_to_L_FGS->this_L_FGS.Left_Pilot_Flying_from_RL_BUS;
+		FGS_SYSTEM4: port this_ENVIRONMENT.TS_Bool_L_to_L_FGS->this_L_FGS.TS_Bool_L_from_ENVIRONMENT;
+		FGS_SYSTEM5: port this_ENVIRONMENT.PS_Bool_L_to_L_FGS->this_L_FGS.PS_Bool_L_from_ENVIRONMENT;
+		FGS_SYSTEM6: port this_ENVIRONMENT.TS_Bool_L_to_R_FGS->this_R_FGS.TS_Bool_L_from_ENVIRONMENT;
+		FGS_SYSTEM7: port this_ENVIRONMENT.PS_Bool_L_to_R_FGS->this_R_FGS.PS_Bool_L_from_ENVIRONMENT;
+		FGS_SYSTEM8: port this_CLK_ONE.Temporalvalue_to_L_FGS->this_L_FGS.Temporalvalue_from_CLK_ONE;
+		FGS_SYSTEM9: port this_CLK_TWO.Temporalvalue_to_LR_BUS->this_LR_BUS.Temporalvalue_from_CLK_TWO;
+		FGS_SYSTEM10: port this_CLK_THREE.Temporalvalue_to_R_FGS->this_R_FGS.Temporalvalue_from_CLK_THREE;
+		FGS_SYSTEM11: port this_CLK_FOUR.Temporalvalue_to_RL_BUS->this_RL_BUS.Temporalvalue_from_CLK_FOUR;
+end FGS_SYSTEM.impl;
+
+system L_FGS
+	features
+		Temporalvalue_from_CLK_ONE : in data port;
+		PS_Bool_L_from_ENVIRONMENT : in data port;
+		TS_Bool_L_from_ENVIRONMENT : in data port;
+		Left_Pilot_Flying_from_RL_BUS : in data port;
+		Left_Pilot_Flying_Side_to_LR_BUS : out data port;
+end L_FGS;
+
+system implementation L_FGS.impl
+end L_FGS.impl;
+
+system R_FGS
+	features
+		Temporalvalue_from_CLK_THREE : in data port;
+		PS_Bool_L_from_ENVIRONMENT : in data port;
+		TS_Bool_L_from_ENVIRONMENT : in data port;
+		Left_Pilot_Flying_Side_to_RL_BUS : out data port;
+		Left_Pilot_Flying_from_LR_BUS : in data port;
+end R_FGS;
+
+system implementation R_FGS.impl
+end R_FGS.impl;
+
+system LR_BUS
+	features
+		Temporalvalue_from_CLK_TWO : in data port;
+		Left_Pilot_Flying_to_R_FGS : out data port;
+		Left_Pilot_Flying_Side_from_L_FGS : in data port;
+end LR_BUS;
+
+system implementation LR_BUS.impl
+end LR_BUS.impl;
+
+system RL_BUS
+	features
+		Temporalvalue_from_CLK_FOUR : in data port;
+		Left_Pilot_Flying_to_L_FGS : out data port;
+		Left_Pilot_Flying_Side_from_R_FGS : in data port;
+end RL_BUS;
+
+system implementation RL_BUS.impl
+end RL_BUS.impl;
+
+system CLK_ONE
+	features
+		Temporalvalue_to_L_FGS : out data port;
+end CLK_ONE;
+
+system implementation CLK_ONE.impl
+end CLK_ONE.impl;
+
+system CLK_TWO
+	features
+		Temporalvalue_to_LR_BUS : out data port;
+end CLK_TWO;
+
+system implementation CLK_TWO.impl
+end CLK_TWO.impl;
+
+system CLK_THREE
+	features
+		Temporalvalue_to_R_FGS : out data port;
+end CLK_THREE;
+
+system implementation CLK_THREE.impl
+end CLK_THREE.impl;
+
+system CLK_FOUR
+	features
+		Temporalvalue_to_RL_BUS : out data port;
+end CLK_FOUR;
+
+system implementation CLK_FOUR.impl
+end CLK_FOUR.impl;
+
+system ENVIRONMENT
+	features
+		PS_Bool_L_to_R_FGS : out data port;
+		TS_Bool_L_to_R_FGS : out data port;
+		PS_Bool_L_to_L_FGS : out data port;
+		TS_Bool_L_to_L_FGS : out data port;
+end ENVIRONMENT;
+
+system implementation ENVIRONMENT.impl
+end ENVIRONMENT.impl;
+	
+	
+end FJF;

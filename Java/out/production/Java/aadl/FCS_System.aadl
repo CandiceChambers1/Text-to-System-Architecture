@@ -1,0 +1,62 @@
+package FCS_SYSTEM_AADL
+public
+
+system FCS_SYSTEM
+end FCS_SYSTEM;
+
+system implementation FCS_SYSTEM.impl
+--    subcomponents
+--        this_FCS: system FCS.impl;
+--        this_FGS: system FGS.impl;
+--        this_FCS_BUS: system FCS_BUS.impl;
+--    connections
+--        FCS_SYSTEM0: port this_FCS.TRANSFER_SWITCH->this_FCS.this_LEFT_SIDE;
+--        FCS_SYSTEM1: port this_FCS.TRANSFER_SWITCH->this_FCS.this_RIGHT_SIDE.TRANSFER_SWITCH;
+--        FCS_SYSTEM2: port this_FCS.PRIMARY_SIDE->this_FCS.this_RIGHT_SIDE.PRIMARY_SIDE;
+--        FCS_SYSTEM3: port this_FCS.PRIMARY_SIDE->this_FCS.this_LEFT_SIDE.PRIMARY_SIDE;
+end FCS_SYSTEM.impl;
+
+system implementation FCS.impl
+    subcomponents
+        this_LEFT_SIDE: system FGS.impl;
+        this_RIGHT_SIDE: system FGS.impl;
+        this_LR: system FCS_BUS.impl;
+        this_RL: system FCS_BUS.impl;
+    connections
+        FCS0: port this_LEFT_SIDE.PILOT_FLYING-> this_LR.LEFT;
+        FCS1: port this_RL.LEFT->this_LEFT_SIDE.BUS_IN;
+        FCS2: port this_LR.RIGHT->this_RIGHT_SIDE.BUS_IN;
+        FCS3: port this_RIGHT_SIDE.PILOT_FLYING->this_RL.RIGHT;
+end FCS.impl;
+
+system FCS
+    features
+		PRIMARY_SIDE : in out data port;
+		TRANSFER_SWITCH : in out data port;
+end FCS;
+
+system FGS
+    features
+		TRANSFER_SWITCH : in out data port;
+		PRIMARY_SIDE : in out data port;
+        PILOT_FLYING : out data port;
+		BUS_IN : in data port;
+        CLK : in data port;
+end FGS;
+
+system implementation FGS.impl
+end FGS.impl;
+
+system FCS_BUS
+    features
+		LEFT : in out data port;
+		RIGHT : in out data port;
+        CLK : in data port;
+end FCS_BUS;
+
+system implementation FCS_BUS.impl
+end FCS_BUS.impl;
+
+system FGS_SYSTEM
+end FGS_SYSTEM;
+end FCS_SYSTEM_AADL;
