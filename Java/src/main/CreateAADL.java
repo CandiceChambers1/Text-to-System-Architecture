@@ -83,7 +83,7 @@ public class CreateAADL {
 
 //        System.out.println(output);
         try {
-            String filePath = "./src/gen/aadl/models/" + filename + "_Automated.aadl";
+            String filePath = "/Users/candi/IdeaProjects/Text-to-System-Architecture/Java/src/gen/aadl/aadl/" + filename + "_Automated.aadl";
 
             // Ensure the directory exists
             File file = new File(filePath);
