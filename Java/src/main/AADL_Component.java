@@ -3,20 +3,20 @@ package main;
 import java.util.ArrayList;
 
 public class AADL_Component {
-    ArrayList<Implementations> implementations;
+    ArrayList<Instantiations> instantiations;
     ArrayList<Subcomponents> subcomponents;
     ArrayList<Features> features;
     ArrayList<Connections> connections;
 
     public AADL_Component() {
-        implementations = new ArrayList<Implementations>();
+        instantiations = new ArrayList<Instantiations>();
         subcomponents = new ArrayList<Subcomponents>();
         features = new ArrayList<Features>();
         connections = new ArrayList<Connections>();
     }
-    // Create an implementation
-    public void createImplementation(String name) {
-        implementations.add(new Implementations(name));
+    // Create an instantiation
+    public void createInstantiation(String name, String instantiation) {
+        instantiations.add(new Instantiations(name, instantiation));
     }
 
     // Create a subcomponent
@@ -32,6 +32,17 @@ public class AADL_Component {
     // Create a Feature
     public void createFeature(String name, String ownerName) {
         features.add(new Features(name,ownerName));
+    }
+
+    public String checkBlock(String name){
+//        System.out.println("Name: " + name);
+        for (Instantiations i : instantiations) {
+//            System.out.println("I: " + i.name);
+            if (i.name.equals(name)) {
+                return i.instantiations;
+            }
+        }
+        return null;
     }
 
     public String getFeatureOwnerName(String name){

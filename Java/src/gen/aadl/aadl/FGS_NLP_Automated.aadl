@@ -7,31 +7,32 @@ end FCS_SYSTEM;
 system implementation FCS_SYSTEM.impl
 	subcomponents
 		this_FGS: system FGS.impl;
-		this_BUS: system BUS.impl;
+		this_FCS_BUS: system FCS_BUS.impl;
 		this_FCS: system FCS.impl;
-	connections
-		FCS_SYSTEM0: port this_FCS.TRANSFER_SWITCH-> this_LEFT_SIDE.TRANSFER_SWITCH;
-		FCS_SYSTEM1: port this_FCS.PRIMARY_SIDE-> this_LEFT_SIDE.PRIMARY_SIDE;
-		FCS_SYSTEM2: port this_FCS.TRANSFER_SWITCH-> this_RIGHT_SIDE.TRANSFER_SWITCH;
-		FCS_SYSTEM3: port this_FCS.PRIMARY_SIDE-> this_RIGHT_SIDE.PRIMARY_SIDE;
 end FCS_SYSTEM.impl;
 
 system implementation FCS.impl
 	subcomponents
-		this_LR: system LR.impl;
-		this_RL: system RL.impl;
-		this_RIGHT_SIDE: system RIGHT_SIDE.impl;
-		this_LEFT_SIDE: system LEFT_SIDE.impl;
+		this_LR: system FCS_BUS.impl;
+		this_RL: system FCS_BUS.impl;
+		this_RIGHT_SIDE: system FGS.impl;
+		this_LEFT_SIDE: system FGS.impl;
 	connections
 		FCS0: port this_LEFT_SIDE.PILOT_FLYING-> this_LR.LEFT;
 		FCS1: port this_RL.LEFT-> this_LEFT_SIDE.BUS_IN;
 		FCS2: port this_LR.RIGHT-> this_RIGHT_SIDE.BUS_IN;
 		FCS3: port this_RIGHT_SIDE.PILOT_FLYING-> this_RL.RIGHT;
-		FCS4: port this_FCS.TRANSFER_SWITCH-> this_LEFT_SIDE.TRANSFER_SWITCH;
-		FCS5: port this_FCS.PRIMARY_SIDE-> this_LEFT_SIDE.PRIMARY_SIDE;
-		FCS6: port this_FCS.TRANSFER_SWITCH-> this_RIGHT_SIDE.TRANSFER_SWITCH;
-		FCS7: port this_FCS.PRIMARY_SIDE-> this_RIGHT_SIDE.PRIMARY_SIDE;
+		FCS4: port TRANSFER_SWITCH-> this_LEFT_SIDE.TRANSFER_SWITCH;
+		FCS5: port PRIMARY_SIDE-> this_LEFT_SIDE.PRIMARY_SIDE;
+		FCS6: port TRANSFER_SWITCH-> this_RIGHT_SIDE.TRANSFER_SWITCH;
+		FCS7: port PRIMARY_SIDE-> this_RIGHT_SIDE.PRIMARY_SIDE;
 end FCS.impl;
+
+system implementation FGS.impl
+end FGS.impl;
+
+system implementation FCS_BUS.impl
+end FCS_BUS.impl;
 
 system FCS
 	features
@@ -48,10 +49,12 @@ system FGS
 		TRANSFER_SWITCH : in out data port;
 end FGS;
 
-system BUS
+system FCS_BUS
 	features
 		RIGHT : in out data port;
 		CLK : in out data port;
 		LEFT : in out data port;
-end BUS;
+end FCS_BUS;
+
+end FCS_SYSTEM_AADL;
 
