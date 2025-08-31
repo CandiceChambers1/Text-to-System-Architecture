@@ -40,7 +40,6 @@ public class CreateAADL {
                 }
 //                Instantiation
             } else if (Objects.equals(s.sentenceType, "Instantiation")) {
-//                System.out.println("i: " + s.structNoun + " " +s.structNouns);
                 components.createInstantiation(s.structNoun, s.structNouns.get(0));
 
 //                Connections
@@ -65,9 +64,6 @@ public class CreateAADL {
 //                                    System.out.println("Third: "+s.structNoun + "\t" + s1.structNoun + "\t" + s.connectionNoun);
                                     components.createConnection(s1.structNoun, s.structNoun, s.connectionNoun, src, dest);
 //                                    break;
-                                } else {
-//                                    System.out.println("Never");
-
                                 }
                             }
                         }
@@ -84,7 +80,7 @@ public class CreateAADL {
 
         output += generateImplementation();
         output += generateFeature();
-//        System.out.println(output);
+
         try {
             String filePath = "/Users/candi/IdeaProjects/Text-to-System-Architecture/Java/src/gen/aadl/aadl/" + filename + "_Automated.aadl";
             File file = new File(filePath);
@@ -97,7 +93,6 @@ public class CreateAADL {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
-
     }
 
     // Generate Features
@@ -132,7 +127,6 @@ public class CreateAADL {
 
         for (Sentence s : sentences.sentences) {
             if (Objects.equals(s.sentenceType, "Structural")) {
-//                System.out.println("l: "+ s.structNoun);
                 if (s.isInternal && !s.isPort) {
                     internalBlocks.add(s.structNoun);
                     output.append("system implementation ").append(s.structNoun).append(".impl\n");
@@ -140,9 +134,7 @@ public class CreateAADL {
                         for(Subcomponents sub: components.subcomponents){
                             if (Objects.equals(s.structNoun, sub.ownerName)) {
                                 instantiationNoun = components.checkBlock(sub.name);
-                                System.out.println(instantiationNoun);
                                 if (instantiationNoun != null) {
-//                                    System.out.println(instantiationNoun);
                                     output.append(generateInstantiationSubcomponents(sub.name, instantiationNoun));
                                 }else{
                                     output.append(generateSubcomponents(sub.name));
@@ -152,7 +144,6 @@ public class CreateAADL {
                     output.append(generateConnections(s.structNoun));
                     output.append("end ").append(s.structNoun).append(".impl;\n\n");
                 }else if (!s.isPort) {
-//                    System.out.println(s.structNoun);
                     output.append("package ").append(s.structNoun).append("_AADL\n");
                     output.append("public\n\n");
 
@@ -168,7 +159,6 @@ public class CreateAADL {
                             break;
                         }
                     }
-//                    output.append(generateConnections(s.structNoun));
                     output.append("end ").append(s.structNoun).append(".impl;\n\n");
                 }else if(!internalBlocks.contains(s.structNoun)){
                     output.append("system implementation ").append(s.structNoun).append(".impl\n");
@@ -200,22 +190,28 @@ public class CreateAADL {
 
       int count = 0;
       String ownerName = "";
-      String ownerFirstName = "";
 
       for (Connections con : components.connections) {
-//          System.out.println(components.getSubcomponentType(con.srcBlockName));
-          ownerFirstName = con.ownerName;
           ownerName = components.getSubcomponentOwnerName(con.srcBlockName);
-          if (ownerName.equals(name)) {
-              output.append("\t\t").append(ownerName).append(count).append(": port this_").append(con.srcBlockName).append(".").append(con.srcPortName).append("-> this_").append(con.destBlockName).append(".").append(con.destPortName).append(";\n");
+//          System.out.println("Owner Name: " + con.ownerName + " Name: " + name);
+//          Block -> Property
+          if (name.equals(con.srcBlockName) && name.equals(con.ownerName)) {
+              output.append("\t\t").append(name).append(count).append(": port ").append(con.srcPortName).append("-> this_").append(con.destBlockName).append(".").append(con.destPortName).append(";\n");
               count++;
-          }else if (ownerFirstName.equals(name)) {
-              output.append("\t\t").append(ownerFirstName).append(count).append(": port ").append(con.srcPortName).append("-> this_").append(con.destBlockName).append(".").append(con.destPortName).append(";\n");
+
+//        Property -> Block
+          } else if (name.equals(con.destBlockName) && name.equals(con.ownerName)){
+              output.append("\t\t").append(name).append(count).append(": port this_").append(con.srcBlockName).append(".").append(con.srcPortName).append("-> ").append(con.destPortName).append(";\n");
               count++;
-//              System.out.println("Owner Name: " + ownerName + " Source Block: " + con.srcBlockName);
+
+//        Property -> Property
+          } else if ( name.equals(con.ownerName)){
+              System.out.println("Owner Name: " + con.ownerName + " Name: " + name);
+              output.append("\t\t").append(name).append(count).append(": port this_").append(con.srcBlockName).append(".").append(con.srcPortName).append("-> this_").append(con.destBlockName).append(".").append(con.destPortName).append(";\n");
+              count++;
           }
       }
-//      output.append("end ").append(name).append(".impl;\n\n");
+      System.out.println(" ");
       return output.toString();
     }
 }

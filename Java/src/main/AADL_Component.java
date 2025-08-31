@@ -35,29 +35,9 @@ public class AADL_Component {
     }
 
     public String checkBlock(String name){
-//        System.out.println("Name: " + name);
         for (Instantiations i : instantiations) {
-//            System.out.println("I: " + i.name);
             if (i.name.equals(name)) {
                 return i.instantiations;
-            }
-        }
-        return null;
-    }
-
-    public String getFeatureOwnerName(String name){
-        for(Features f: features){
-            if(f.name.equals(name)){
-                return f.ownerName;
-            }
-        }
-        return null;
-    }
-
-    public String getSubcomponentType(String name){
-        for(Subcomponents sub: subcomponents){
-            if(sub.name.equals(name)){
-                return sub.type;
             }
         }
         return null;

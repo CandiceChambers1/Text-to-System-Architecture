@@ -25,46 +25,6 @@ system implementation HANDHELD_HAIR_DRYER.impl
 		this_POWER_UNIT: system POWER_UNIT.impl;
 		this_USER_INTERFACE: system USER_INTERFACE.impl;
 		this_HAIR_DRYER: system HAIR_DRYER.impl;
-	connections
-		HANDHELD_HAIR_DRYER0: port this_HAIR_DRYER.IN_E-> this_USER_INTERFACE.IN_E;
-		HANDHELD_HAIR_DRYER1: port this_HAIR_DRYER.IN_M-> this_USER_INTERFACE.IN_M1;
-		HANDHELD_HAIR_DRYER2: port this_HAIR_DRYER.IN_E-> this_POWER_UNIT.IN_E1;
-		HANDHELD_HAIR_DRYER3: port this_HEATING_UNIT.OUT_M-> this_USER_INTERFACE.IN_M2;
-		HANDHELD_HAIR_DRYER4: port this_USER_INTERFACE.OUT_M1-> this_PROPULSION_UNIT.IN_M;
-		HANDHELD_HAIR_DRYER5: port this_USER_INTERFACE.OUT_M2-> this_HAIR_DRYER.OUT_M;
-		HANDHELD_HAIR_DRYER6: port this_USER_INTERFACE.OUT_E-> this_POWER_UNIT.IN_E2;
-		HANDHELD_HAIR_DRYER7: port this_POWER_UNIT.OUT_E1-> this_PROPULSION_UNIT.IN_E;
-		HANDHELD_HAIR_DRYER8: port this_POWER_UNIT.OUT_E2-> this_HEATING_UNIT.IN_E;
-		HANDHELD_HAIR_DRYER9: port this_PROPULSION_UNIT.OUT_M-> this_HEATING_UNIT.IN_M;
-		HANDHELD_HAIR_DRYER10: port this_USER_INTERFACE.IN_E-> this_HANDLE.IN_E;
-		HANDHELD_HAIR_DRYER11: port this_HANDLE.OUT_E-> this_USER_INTERFACE.OUT_E;
-		HANDHELD_HAIR_DRYER12: port this_USER_INTERFACE.IN_M1-> this_BODY.IN_M1;
-		HANDHELD_HAIR_DRYER13: port this_USER_INTERFACE.IN_M2-> this_BODY.IN_M2;
-		HANDHELD_HAIR_DRYER14: port this_BODY.OUT_M1-> this_USER_INTERFACE.OUT_M1;
-		HANDHELD_HAIR_DRYER15: port this_BODY.OUT_M2-> this_USER_INTERFACE.OUT_M2;
-		HANDHELD_HAIR_DRYER16: port this_HANDLE.IN_E-> this_POWER_BUTTON.IN_E;
-		HANDHELD_HAIR_DRYER17: port this_POWER_BUTTON.OUT_E-> this_HANDLE.OUT_E;
-		HANDHELD_HAIR_DRYER18: port this_BODY.IN_M1-> this_INTAKE_GRILL.IN_M;
-		HANDHELD_HAIR_DRYER19: port this_INTAKE_GRILL.OUT_M-> this_BODY.OUT_M2;
-		HANDHELD_HAIR_DRYER20: port this_BODY.IN_M2-> this_DISCHARGE_OPENING.IN_M;
-		HANDHELD_HAIR_DRYER21: port this_DISCHARGE_OPENING.OUT_M-> this_BODY.OUT_M1;
-		HANDHELD_HAIR_DRYER22: port this_POWER_UNIT.IN_E1-> this_CORD.IN_E;
-		HANDHELD_HAIR_DRYER23: port this_POWER_UNIT.IN_E2-> this_POWER_SWITCH.IN_E2;
-		HANDHELD_HAIR_DRYER24: port this_CORD.OUT_E-> this_POWER_SWITCH.IN_E1;
-		HANDHELD_HAIR_DRYER25: port this_POWER_SWITCH.OUT_E-> this_JUNCTION_BOX.IN_E;
-		HANDHELD_HAIR_DRYER26: port this_JUNCTION_BOX.OUT_E1-> this_MOTOR_WIRES.IN_E;
-		HANDHELD_HAIR_DRYER27: port this_JUNCTION_BOX.OUT_E2-> this_HEATING_WIRES.IN_E;
-		HANDHELD_HAIR_DRYER28: port this_MOTOR_WIRES.OUT_E-> this_POWER_UNIT.OUT_E1;
-		HANDHELD_HAIR_DRYER29: port this_HEATING_WIRES.OUT_E-> this_POWER_UNIT.OUT_E2;
-		HANDHELD_HAIR_DRYER30: port this_PROPULSION_UNIT.IN_E-> this_MOTOR.IN_E;
-		HANDHELD_HAIR_DRYER31: port this_PROPULSION_UNIT.IN_M-> this_FAN.IN_M;
-		HANDHELD_HAIR_DRYER32: port this_MOTOR.OUT_E-> this_FAN.IN_E;
-		HANDHELD_HAIR_DRYER33: port this_FAN.OUT_M-> this_PROPULSION_UNIT.OUT_M;
-		HANDHELD_HAIR_DRYER34: port this_FAN.OUT_E-> this_PROPULSION_UNIT.OUT_E;
-		HANDHELD_HAIR_DRYER35: port this_HEATING_UNIT.IN_E-> this_HEATER_CORE.IN_E;
-		HANDHELD_HAIR_DRYER36: port this_HEATING_UNIT.IN_M-> this_HEATER_CORE.IN_M;
-		HANDHELD_HAIR_DRYER37: port this_HEATER_CORE.OUT_E-> this_INSULATING_SLEEVE.IN_E;
-		HANDHELD_HAIR_DRYER38: port this_HEATER_CORE.OUT_M-> this_HEATING_UNIT.OUT_M;
 end HANDHELD_HAIR_DRYER.impl;
 
 system implementation HAIR_DRYER.impl
@@ -74,12 +34,12 @@ system implementation HAIR_DRYER.impl
 		this_POWER_UNIT: system POWER_UNIT.impl;
 		this_USER_INTERFACE: system USER_INTERFACE.impl;
 	connections
-		HAIR_DRYER0: port this_HAIR_DRYER.IN_E-> this_USER_INTERFACE.IN_E;
-		HAIR_DRYER1: port this_HAIR_DRYER.IN_M-> this_USER_INTERFACE.IN_M1;
-		HAIR_DRYER2: port this_HAIR_DRYER.IN_E-> this_POWER_UNIT.IN_E1;
+		HAIR_DRYER0: port IN_E-> this_USER_INTERFACE.IN_E;
+		HAIR_DRYER1: port IN_M-> this_USER_INTERFACE.IN_M1;
+		HAIR_DRYER2: port IN_E-> this_POWER_UNIT.IN_E1;
 		HAIR_DRYER3: port this_HEATING_UNIT.OUT_M-> this_USER_INTERFACE.IN_M2;
 		HAIR_DRYER4: port this_USER_INTERFACE.OUT_M1-> this_PROPULSION_UNIT.IN_M;
-		HAIR_DRYER5: port this_USER_INTERFACE.OUT_M2-> this_HAIR_DRYER.OUT_M;
+		HAIR_DRYER5: port this_USER_INTERFACE.OUT_M2-> OUT_M;
 		HAIR_DRYER6: port this_USER_INTERFACE.OUT_E-> this_POWER_UNIT.IN_E2;
 		HAIR_DRYER7: port this_POWER_UNIT.OUT_E1-> this_PROPULSION_UNIT.IN_E;
 		HAIR_DRYER8: port this_POWER_UNIT.OUT_E2-> this_HEATING_UNIT.IN_E;
@@ -91,21 +51,24 @@ system implementation USER_INTERFACE.impl
 		this_HANDLE: system HANDLE.impl;
 		this_BODY: system BODY.impl;
 	connections
-		USER_INTERFACE0: port this_USER_INTERFACE.IN_E-> this_HANDLE.IN_E;
-		USER_INTERFACE1: port this_HANDLE.OUT_E-> this_USER_INTERFACE.OUT_E;
-		USER_INTERFACE2: port this_USER_INTERFACE.IN_M1-> this_BODY.IN_M1;
-		USER_INTERFACE3: port this_USER_INTERFACE.IN_M2-> this_BODY.IN_M2;
-		USER_INTERFACE4: port this_BODY.OUT_M1-> this_USER_INTERFACE.OUT_M1;
-		USER_INTERFACE5: port this_BODY.OUT_M2-> this_USER_INTERFACE.OUT_M2;
+		USER_INTERFACE0: port IN_E-> this_HANDLE.IN_E;
+		USER_INTERFACE1: port this_HANDLE.OUT_E-> OUT_E;
+		USER_INTERFACE2: port IN_M1-> this_BODY.IN_M1;
+		USER_INTERFACE3: port IN_M2-> this_BODY.IN_M2;
+		USER_INTERFACE4: port this_BODY.OUT_M1-> OUT_M1;
+		USER_INTERFACE5: port this_BODY.OUT_M2-> OUT_M2;
 end USER_INTERFACE.impl;
 
 system implementation HANDLE.impl
 	subcomponents
 		this_POWER_BUTTON: system POWER_BUTTON.impl;
 	connections
-		HANDLE0: port this_HANDLE.IN_E-> this_POWER_BUTTON.IN_E;
-		HANDLE1: port this_POWER_BUTTON.OUT_E-> this_HANDLE.OUT_E;
+		HANDLE0: port IN_E-> this_POWER_BUTTON.IN_E;
+		HANDLE1: port this_POWER_BUTTON.OUT_E-> OUT_E;
 end HANDLE.impl;
+
+system implementation POWER_BUTTON.impl
+end POWER_BUTTON.impl;
 
 system implementation POWER_UNIT.impl
 	subcomponents
@@ -115,49 +78,82 @@ system implementation POWER_UNIT.impl
 		this_POWER_SWITCH: system POWER_SWITCH.impl;
 		this_CORD: system CORD.impl;
 	connections
-		POWER_UNIT0: port this_POWER_UNIT.IN_E1-> this_CORD.IN_E;
-		POWER_UNIT1: port this_POWER_UNIT.IN_E2-> this_POWER_SWITCH.IN_E2;
+		POWER_UNIT0: port IN_E1-> this_CORD.IN_E;
+		POWER_UNIT1: port IN_E2-> this_POWER_SWITCH.IN_E2;
 		POWER_UNIT2: port this_CORD.OUT_E-> this_POWER_SWITCH.IN_E1;
 		POWER_UNIT3: port this_POWER_SWITCH.OUT_E-> this_JUNCTION_BOX.IN_E;
 		POWER_UNIT4: port this_JUNCTION_BOX.OUT_E1-> this_MOTOR_WIRES.IN_E;
 		POWER_UNIT5: port this_JUNCTION_BOX.OUT_E2-> this_HEATING_WIRES.IN_E;
-		POWER_UNIT6: port this_MOTOR_WIRES.OUT_E-> this_POWER_UNIT.OUT_E1;
-		POWER_UNIT7: port this_HEATING_WIRES.OUT_E-> this_POWER_UNIT.OUT_E2;
+		POWER_UNIT6: port this_MOTOR_WIRES.OUT_E-> OUT_E1;
+		POWER_UNIT7: port this_HEATING_WIRES.OUT_E-> OUT_E2;
 end POWER_UNIT.impl;
+
+system implementation CORD.impl
+end CORD.impl;
+
+system implementation POWER_SWITCH.impl
+end POWER_SWITCH.impl;
+
+system implementation JUNCTION_BOX.impl
+end JUNCTION_BOX.impl;
+
+system implementation HEATING_WIRES.impl
+end HEATING_WIRES.impl;
+
+system implementation MOTOR_WIRES.impl
+end MOTOR_WIRES.impl;
 
 system implementation PROPULSION_UNIT.impl
 	subcomponents
 		this_MOTOR: system MOTOR.impl;
 		this_FAN: system FAN.impl;
 	connections
-		PROPULSION_UNIT0: port this_PROPULSION_UNIT.IN_E-> this_MOTOR.IN_E;
-		PROPULSION_UNIT1: port this_PROPULSION_UNIT.IN_M-> this_FAN.IN_M;
+		PROPULSION_UNIT0: port IN_E-> this_MOTOR.IN_E;
+		PROPULSION_UNIT1: port IN_M-> this_FAN.IN_M;
 		PROPULSION_UNIT2: port this_MOTOR.OUT_E-> this_FAN.IN_E;
-		PROPULSION_UNIT3: port this_FAN.OUT_M-> this_PROPULSION_UNIT.OUT_M;
-		PROPULSION_UNIT4: port this_FAN.OUT_E-> this_PROPULSION_UNIT.OUT_E;
+		PROPULSION_UNIT3: port this_FAN.OUT_M-> OUT_M;
+		PROPULSION_UNIT4: port this_FAN.OUT_E-> OUT_E;
 end PROPULSION_UNIT.impl;
+
+system implementation FAN.impl
+end FAN.impl;
+
+system implementation MOTOR.impl
+end MOTOR.impl;
 
 system implementation HEATING_UNIT.impl
 	subcomponents
 		this_HEATER_CORE: system HEATER_CORE.impl;
 		this_INSULATING_SLEEVE: system INSULATING_SLEEVE.impl;
 	connections
-		HEATING_UNIT0: port this_HEATING_UNIT.IN_E-> this_HEATER_CORE.IN_E;
-		HEATING_UNIT1: port this_HEATING_UNIT.IN_M-> this_HEATER_CORE.IN_M;
+		HEATING_UNIT0: port IN_E-> this_HEATER_CORE.IN_E;
+		HEATING_UNIT1: port IN_M-> this_HEATER_CORE.IN_M;
 		HEATING_UNIT2: port this_HEATER_CORE.OUT_E-> this_INSULATING_SLEEVE.IN_E;
-		HEATING_UNIT3: port this_HEATER_CORE.OUT_M-> this_HEATING_UNIT.OUT_M;
+		HEATING_UNIT3: port this_HEATER_CORE.OUT_M-> OUT_M;
 end HEATING_UNIT.impl;
+
+system implementation HEATER_CORE.impl
+end HEATER_CORE.impl;
+
+system implementation INSULATING_SLEEVE.impl
+end INSULATING_SLEEVE.impl;
 
 system implementation BODY.impl
 	subcomponents
 		this_INTAKE_GRILL: system INTAKE_GRILL.impl;
 		this_DISCHARGE_OPENING: system DISCHARGE_OPENING.impl;
 	connections
-		BODY0: port this_BODY.IN_M1-> this_INTAKE_GRILL.IN_M;
-		BODY1: port this_INTAKE_GRILL.OUT_M-> this_BODY.OUT_M2;
-		BODY2: port this_BODY.IN_M2-> this_DISCHARGE_OPENING.IN_M;
-		BODY3: port this_DISCHARGE_OPENING.OUT_M-> this_BODY.OUT_M1;
+		BODY0: port IN_M1-> this_INTAKE_GRILL.IN_M;
+		BODY1: port this_INTAKE_GRILL.OUT_M-> OUT_M2;
+		BODY2: port IN_M2-> this_DISCHARGE_OPENING.IN_M;
+		BODY3: port this_DISCHARGE_OPENING.OUT_M-> OUT_M1;
 end BODY.impl;
+
+system implementation INTAKE_GRILL.impl
+end INTAKE_GRILL.impl;
+
+system implementation DISCHARGE_OPENING.impl
+end DISCHARGE_OPENING.impl;
 
 system HAIR_DRYER
 	features
@@ -289,4 +285,6 @@ system DISCHARGE_OPENING
 		IN_M : in out data port;
 		OUT_M : in out data port;
 end DISCHARGE_OPENING;
+
+end HANDHELD_HAIR_DRYER_AADL;
 

@@ -15,10 +15,10 @@ public class Main {
 
     public static void main(String[] args) {
         try {
-            String inputFileName = "./src/data/FGS_NLP.txt";
+//            String inputFileName = "./src/data/FGS_NLP.txt";
 //            String inputFileName = "./src/data/Coffeemaker_NLP.txt";
 //            String inputFileName = "./src/data/ActiveStandby_NLP.txt";
-//            String inputFileName = "./src/data/HairDryer_NLP.txt";
+            String inputFileName = "./src/data/HairDryer_NLP.txt";
 //            String inputFileName = "./src/data/VaccuumCleaner_NLP.txt";
             String filename = inputFileName.split("/")[3].split(".txt")[0];
             String inputFile = readInputFile(inputFileName);
