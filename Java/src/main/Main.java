@@ -15,11 +15,12 @@ public class Main {
 
     public static void main(String[] args) {
         try {
-//            String inputFileName = "./src/data/FGS_NLP.txt";
-//            String inputFileName = "./src/data/Coffeemaker_NLP.txt";
-//            String inputFileName = "./src/data/ActiveStandby_NLP.txt";
-            String inputFileName = "./src/data/HairDryer_NLP.txt";
-//            String inputFileName = "./src/data/VaccuumCleaner_NLP.txt";
+//            String inputFileName = "Java/src/data/FGS_NLP.txt";
+//            String inputFileName = "Java/src/data/Coffeemaker_NLP.txt";
+//            String inputFileName = "Java/src/data/ActiveStandby_NLP.txt";
+//            String inputFileName = "Java/src/data/HairDryer_NLP.txt";
+            String inputFileName = "Java/src/data/VaccuumCleaner_NLP.txt";
+
             String filename = inputFileName.split("/")[3].split(".txt")[0];
             String inputFile = readInputFile(inputFileName);
             String input = cleanText(inputFile);
@@ -32,14 +33,14 @@ public class Main {
             visitor.sentences = new Sentences();
             visitor.visit(sysmlParser.nlparch());
 
-//          Create SysML Model
-            CreateSysML outputSysML_Formatter= new CreateSysML(visitor.sentences , true);
-
 //          Create AADL Model
             CreateAADL outputAADL_Formatter = new CreateAADL(visitor.sentences, true);
-
-            outputSysML_Formatter.generateOutput(filename);
             outputAADL_Formatter.generateOutput(filename);
+
+//          Create SysML Model
+            CreateSysML outputSysML_Formatter= new CreateSysML(visitor.sentences , true);
+            outputSysML_Formatter.generateOutput(filename);
+
 
         } catch (Exception e) {
             e.printStackTrace();

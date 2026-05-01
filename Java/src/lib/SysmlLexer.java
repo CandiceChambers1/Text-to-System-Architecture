@@ -1,6 +1,6 @@
 // Generated from .\Sysml.g4 by ANTLR 4.9.2
 
-    package lib;
+package lib;
 
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.CharStream;

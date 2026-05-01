@@ -82,7 +82,7 @@ public class CreateAADL {
         output += generateFeature();
 
         try {
-            String filePath = "/Users/candi/IdeaProjects/Text-to-System-Architecture/Java/src/gen/aadl/aadl/" + filename + "_Automated.aadl";
+            String filePath = "/Users/candi/IdeaProjects/Text-to-System-Architecture/Java/Java/src/gen/aadl/aadl/" + filename + "_Automated.aadl";
             File file = new File(filePath);
             file.getParentFile().mkdirs();
 
@@ -206,12 +206,12 @@ public class CreateAADL {
 
 //        Property -> Property
           } else if ( name.equals(con.ownerName)){
-              System.out.println("Owner Name: " + con.ownerName + " Name: " + name);
+//              System.out.println("Owner Name: " + con.ownerName + " Name: " + name);
               output.append("\t\t").append(name).append(count).append(": port this_").append(con.srcBlockName).append(".").append(con.srcPortName).append("-> this_").append(con.destBlockName).append(".").append(con.destPortName).append(";\n");
               count++;
           }
       }
-      System.out.println(" ");
+//      System.out.println(" ");
       return output.toString();
     }
 }
